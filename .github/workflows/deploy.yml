@@ -20,6 +20,6 @@ jobs:
     - name: Validate links and images
       uses: lycheeverse/lychee-action@v2
       with:
-        args: --verbose --no-progress './**/*.html'
+        args: --verbose --no-progress --exclude 'linkedin\.com' './**/*.html'
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

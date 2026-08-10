@@ -11,6 +11,11 @@ jobs:
     steps:
     - name: Clone Repo
       uses: actions/checkout@v4
+      with:
+          fetch-depth: 0
+
+    - name: Validate commits format
+      uses: wagoid/commitlint-github-action@v6
 
     - name: Install and execute HTMLHint
       run: |

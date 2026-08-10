@@ -19,20 +19,17 @@ resource "aws_s3_bucket_public_access_block" "mybucket" {
 resource "aws_s3_object" "object" {
   bucket       = aws_s3_bucket.mybucket.id
   key          = "index.html"
-  source       = "${path.module}/src/index.html"
+  source       = "${path.module}/../src/index.html"
   content_type = "text/html"
 
-  etag = filemd5("${path.module}/src/index.html")
+  etag = filemd5("${path.module}/../src/index.html")
 }
 
 data "aws_iam_policy_document" "mys3policy" {
   statement {
-
     actions = ["s3:GetObject"]
 
-
     resources = ["${aws_s3_bucket.mybucket.arn}/*"]
-
 
     principals {
       type        = "Service"
@@ -92,4 +89,26 @@ resource "aws_cloudfront_distribution" "cdn" {
   viewer_certificate {
     cloudfront_default_certificate = true
   }
+}
+
+variable "aws_region" {
+  type        = string
+  default     = "eu-south-2"
+  description = "AWS Region for resources"
+}
+
+variable "project_name" {
+  type        = string
+  default     = "aws-portfolio"
+  description = "Name prefix"
+}
+
+output "cloudfront_url" {
+  description = "CloudFront HTTPS domain URL"
+  value       = "https://${aws_cloudfront_distribution.cdn.domain_name}"
+}
+
+output "s3_bucket_name" {
+  description = "Name of the provisioned S3 Bucket"
+  value       = aws_s3_bucket.mybucket.id
 }

@@ -1,0 +1,25 @@
+name: danoguer.dev pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  verification:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone Repo
+      uses: actions/checkout@v4
+
+    - name: Install and execute HTMLHint
+      run: |
+        npm install -g htmlhint
+        htmlhint "**/*.html"
+
+    - name: Validate links and images
+      uses: lycheeverse/lychee-action@v2
+      with:
+        args: --verbose --no-progress './**/*.html'
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

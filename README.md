@@ -1,7 +1,6 @@
 # danoguer.dev — Cloud Portfolio
 
-
-A minimal, high-performance static portfolio website deployed on AWS infrastructure using Infrastructure as Code (IaC) and automated CI/CD pipelines.
+A minimal, serverless, high-performance static portfolio website deployed on AWS infrastructure using Infrastructure as Code (IaC) and automated CI/CD pipelines.
 
 ---
 
@@ -19,25 +18,25 @@ A minimal, high-performance static portfolio website deployed on AWS infrastruct
 
 🛠️ Tech Stack
 
-    Frontend: Vanilla HTML5, Modern CSS, JavaScript.
+Frontend: Vanilla HTML5, Modern CSS, JavaScript.
 
-    Infrastructure as Code: Terraform (aws provider).
+Infrastructure as Code: Terraform (aws provider).
 
-    CI/CD & Quality:
 
-        GitHub Actions for automated pipeline execution.
+CI/CD & Quality:
 
-        HTMLHint for HTML syntax validation.
+GitHub Actions for automated pipeline execution.
 
-        Lychee for link and asset validation.
+HTMLHint for HTML syntax validation.
 
-        Commitlint enforcing Conventional Commits standard.
+Lychee for link and asset validation.
+
+Commitlint enforcing Conventional Commits standard.
 
 
 🚀 Local Infrastructure Deployment
 
 To deploy or preview the infrastructure manually:
-Bash
 
 # 1. Navigate to terraform directory
 cd terraform

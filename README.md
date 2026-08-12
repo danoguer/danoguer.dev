@@ -1,51 +1,41 @@
 # danoguer.dev — Cloud Portfolio
 
-A minimal, serverless, high-performance static portfolio website deployed on AWS infrastructure using Infrastructure as Code (IaC) and automated CI/CD pipelines.
+> A minimal, serverless, high-performance portfolio deployed on AWS and managed entirely through Infrastructure as Code.
 
 ---
 
-## 🏗️ Architecture
+## Overview
+
+`danoguer.dev` is a static portfolio designed around a simple principle:
+
+**keep the application layer minimal and let the infrastructure do the work.**
+
+The website is delivered globally through Amazon CloudFront, backed by a private Amazon S3 bucket. Infrastructure is provisioned with Terraform and changes are validated and deployed through GitHub Actions.
+
+The result is a fully automated, low-maintenance and globally distributed static website without publicly exposing the S3 origin.
+
+---
+
+## Architecture
 
 ```text
-[ Client ] ──( HTTPS )──► [ CloudFront CDN ] ──( OAC )──► [ Private S3 Bucket ]
-
-    Storage: Private S3 Bucket storing static assets (index.html).
-
-    Distribution: AWS CloudFront CDN providing HTTPS, edge caching, and global delivery.
-
-    Security: Origin Access Control (OAC) restricting S3 access strictly to CloudFront requests.
-
-
-🛠️ Tech Stack
-
-Frontend: Vanilla HTML5, Modern CSS, JavaScript.
-
-Infrastructure as Code: Terraform (aws provider).
-
-
-CI/CD & Quality:
-
-GitHub Actions for automated pipeline execution.
-
-HTMLHint for HTML syntax validation.
-
-Lychee for link and asset validation.
-
-Commitlint enforcing Conventional Commits standard.
-
-
-🚀 Local Infrastructure Deployment
-
-To deploy or preview the infrastructure manually:
-
-# 1. Navigate to terraform directory
-cd terraform
-
-# 2. Initialize provider and modules
-terraform init
-
-# 3. Preview planned changes
-terraform plan
-
-# 4. Provision AWS resources
-terraform apply
+                         HTTPS
+                           │
+                           ▼
+                    ┌─────────────┐
+                    │   Route 53  │
+                    │     DNS     │
+                    └──────┬──────┘
+                           │
+                           ▼
+                    ┌─────────────┐
+                    │  CloudFront │
+                    │     CDN     │
+                    └──────┬──────┘
+                           │
+                        OAC │
+                           ▼
+                    ┌─────────────┐
+                    │ Private S3  │
+                    │    Bucket   │
+                    └─────────────┘

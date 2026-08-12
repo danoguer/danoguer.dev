@@ -1,6 +1,6 @@
 variable "aws_region" {
   type        = string
-  default     = "eu-south-2"
+  default     = "eu-west-1"
   description = "AWS Region for resources"
 }
 

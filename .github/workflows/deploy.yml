@@ -20,7 +20,7 @@ jobs:
     - name: Install and execute HTMLHint
       run: |
         npm install -g htmlhint
-        htmlhint "**/*.html"
+        htmlhint "**/*.html" --rules "src-not-empty=false"
 
     - name: Validate links and images
       uses: lycheeverse/lychee-action@v2

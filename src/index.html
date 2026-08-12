@@ -453,11 +453,101 @@
   .about-item .label{font-family:var(--mono); font-size:13px; color:var(--proart-gold);}
   .about-item p{color:var(--text-dim); font-size:14px;}
 
+  /* ---------- MINIMAL FULL-WIDTH CONTACT FORM STYLES ---------- */
+  .contact-box {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 22px;
+    width: 100%;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .form-group-full {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+  .form-group {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .form-group label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--proart-gold);
+  }
+  .form-group input,
+  .form-group textarea {
+    background: #101115;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 8px 10px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--proart-gold);
+  }
+  .input-btn-row {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .input-btn-row textarea {
+    flex: 1;
+    resize: vertical;
+    min-height: 42px;
+  }
+  .submit-btn {
+    background: var(--bg);
+    border: 1px solid var(--proart-gold);
+    color: var(--proart-gold);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 0 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .submit-btn:hover {
+    background: var(--proart-gold);
+    color: var(--bg);
+  }
+  .form-status {
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .form-status.success { color: #4CAF50; }
+  .form-status.error { color: #F44336; }
+  .contact-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 10px;
+    opacity: 0.75;
+  }
+
   @media (max-width:768px){
     .arch-pipeline{grid-template-columns:1fr;}
   }
   @media (max-width:640px){
-    .row, .about-item{grid-template-columns:1fr; gap:8px;}
+    .row, .about-item, .form-grid{grid-template-columns:1fr; gap:8px;}
+    .input-btn-row {flex-direction: column;}
+    .submit-btn {padding: 10px 14px;}
     nav{gap:12px;}
     .pill{display:none;}
   }
@@ -636,7 +726,7 @@
     <div class="modal-body">
       <div class="modal-title-row">
         <div class="modal-title-header">
-          <img id="modalTechIcon" src="" alt="" loading="lazy">
+          <img id="modalTechIcon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="Technology icon" loading="lazy">
           <span class="modal-title" id="modalTechName">Go</span>
         </div>
         <p class="modal-summary" id="modalTechSummary"></p>
@@ -691,7 +781,7 @@
 
     <div class="arch-footer-meta">
       <p>// Fully automated CI/CD deployment via GitHub Actions &amp; Terraform</p>
-      <a href="https://github.com/danoguer/cloudforge" target="_blank" rel="noopener" class="link-out">repo →</a>
+      <a href="https://github.com/danoguer/danoguer.dev" target="_blank" rel="noopener" class="link-out">repo →</a>
     </div>
 
   </div>
@@ -719,7 +809,39 @@
   </div>
 </section>
 
-<footer id="contact">
+<!-- SECCIÓN DE CONTACTO MINIMALISTA -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>// contact_me</h2>
+    </div>
+    <div class="contact-box">
+      <form id="contactForm" onsubmit="submitContactForm(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="contactName">$ name:</label>
+            <input type="text" id="contactName" required placeholder="Name / Company">
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">$ email:</label>
+            <input type="email" id="contactEmail" required placeholder="your.email@domain.com">
+          </div>
+          <div class="form-group form-group-full">
+            <label for="contactMessage">$ message:</label>
+            <div class="input-btn-row">
+              <textarea id="contactMessage" rows="2" required placeholder="Type your message..."></textarea>
+              <button type="submit" id="submitBtn" class="submit-btn">[SEND_MESSAGE]</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div id="formStatus" class="form-status"></div>
+      <p class="contact-meta">// Serverless backend powered by AWS Lambda &amp; Go</p>
+    </div>
+  </div>
+</section>
+
+<footer>
   <div class="wrap">
     <p>// AWS SAA-C03 Certified</p>
     <div class="links">
@@ -925,6 +1047,48 @@
       closeStackModalForce();
     }
   });
+
+  /* ---------- FORMULARIO DE CONTACTO ---------- */
+  async function submitContactForm(event) {
+    event.preventDefault();
+
+    const lambdaUrl = "https://oxb7daqokb4wht4mimykebz5ty0vekqw.lambda-url.eu-west-1.on.aws/";
+    const submitBtn = document.getElementById('submitBtn');
+    const statusDiv = document.getElementById('formStatus');
+
+    const payload = {
+      name: document.getElementById('contactName').value,
+      email: document.getElementById('contactEmail').value,
+      message: document.getElementById('contactMessage').value
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = "[SENDING...]";
+    statusDiv.innerText = "";
+    statusDiv.className = "form-status";
+
+    try {
+      const response = await fetch(lambdaUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        statusDiv.innerText = "> Message sent successfully!";
+        statusDiv.classList.add("success");
+        document.getElementById('contactForm').reset();
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (err) {
+      statusDiv.innerText = "> Error sending message. Please try again.";
+      statusDiv.classList.add("error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerText = "[SEND_MESSAGE]";
+    }
+  }
 </script>
 
 </body>

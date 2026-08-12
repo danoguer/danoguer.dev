@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daniel Nogueras del Río — Cloud &amp; DevOps</title>
+<meta name="title" content="Daniel Nogueras del Río — Cloud &amp; DevOps">
+<meta name="description" content="Cloud &amp; DevOps Engineer focused on AWS, Infrastructure as Code, Go, and Observability. Systems background from 42 School.">
+
+<!-- Open Graph / Facebook / LinkedIn / WhatsApp / Discord -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://danoguer.dev/">
+<meta property="og:title" content="Daniel Nogueras del Río — Cloud &amp; DevOps">
+<meta property="og:description" content="Cloud &amp; DevOps Engineer focused on AWS, Infrastructure as Code, Go, and Observability. Systems background from 42 School.">
+<meta property="og:image" content="https://danoguer.dev/og-image.jpg">
+
+<!-- Twitter / X -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://danoguer.dev/">
+<meta property="twitter:title" content="Daniel Nogueras del Río — Cloud &amp; DevOps">
+<meta property="twitter:description" content="Cloud &amp; DevOps Engineer focused on AWS, Infrastructure as Code, Go, and Observability. Systems background from 42 School.">
+<meta property="twitter:image" content="https://danoguer.dev/og-image.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -44,7 +61,7 @@
     display:flex; align-items:center; justify-content:space-between;
     height:56px;
   }
-  .brand{font-family:var(--mono); font-size:14px; letter-spacing:0.02em;}
+  .brand{font-family:var(--mono); font-size:14px; letter-spacing:0.02em; text-decoration:none;}
   .brand b{color:var(--proart-gold);}
   nav{display:flex; gap:20px; font-family:var(--mono); font-size:13px; color:var(--text-dim);}
   nav a{text-decoration:none; transition:color .15s;}
@@ -147,7 +164,18 @@
 
   /* ---------- projects & board ---------- */
   .board{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden;}
-  .row{background:var(--bg-raised); padding:20px 22px; display:grid; grid-template-columns:160px 1fr; gap:20px; align-items:start;}
+  .row{
+    background:var(--bg-raised);
+    padding:20px 22px;
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:20px;
+    align-items:start;
+    transition:background .15s;
+  }
+  .row:hover{
+    background:#181920;
+  }
   .row .svc-name{font-family:var(--mono); font-weight:600; font-size:14px; padding-top:2px; color:var(--text);}
   .row .svc-desc p{color:var(--text-dim); font-size:14px; margin-bottom:10px;}
   .row .svc-desc .stack{display:flex; gap:6px; flex-wrap:wrap;}
@@ -156,12 +184,32 @@
     border:1px solid var(--line); padding:2px 7px; border-radius:3px;
     background: rgba(255,255,255,0.01);
   }
-  .row .link-out, .about-item .link-out, .arch-footer-meta .link-out{
+  .row .link-out, .about-item .link-out, .arch-footer-meta .link-out, .projects-more-link{
     font-family:var(--mono); font-size:12px; color:var(--text-dim);
     display:inline-block; text-decoration:none; transition:color .15s;
   }
   .row .link-out{margin-top:10px;}
-  .row .link-out:hover, .about-item .link-out:hover, .arch-footer-meta .link-out:hover{color:var(--proart-gold);}
+  .row .link-out:hover, .about-item .link-out:hover, .arch-footer-meta .link-out:hover, .projects-more-link:hover{color:var(--proart-gold);}
+
+  .projects-footer-action{
+    margin-top:16px;
+    display:flex;
+    justify-content:flex-end;
+  }
+  .projects-more-link{
+    font-size:13px;
+    font-weight:500;
+    color:var(--proart-gold);
+    padding:6px 12px;
+    border:1px solid rgba(200, 155, 92, 0.3);
+    border-radius:4px;
+    background:var(--bg-raised);
+    transition:background .15s, border-color .15s;
+  }
+  .projects-more-link:hover{
+    background:#1c1d24;
+    border-color:var(--proart-gold);
+  }
 
   /* ---------- TECH STACK ---------- */
   .stack-rows{
@@ -205,15 +253,13 @@
     transform:translateY(-1px);
     background:#1c1d24;
   }
-  .stack-badge img, .stack-badge svg{
-    width:14px;
+  .stack-badge img{
     height:14px;
+    width:auto;
+    max-width:24px;
     object-fit:contain;
     display:block;
     flex-shrink:0;
-  }
-  .stack-badge svg{
-    fill: var(--text);
   }
   .stack-hint{
     font-family:var(--mono);
@@ -287,6 +333,19 @@
     border-bottom:1px solid var(--line);
     padding-bottom:10px;
   }
+  .modal-title-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .modal-title-header img{
+    height:22px;
+    width:auto;
+    max-width:32px;
+    object-fit:contain;
+    display:block;
+    flex-shrink:0;
+  }
   .modal-title{
     font-size:16px;
     font-weight:600;
@@ -295,7 +354,7 @@
   .modal-summary{
     font-size:13px;
     color:var(--text-dim);
-    margin-top:4px;
+    margin-top:6px;
     font-family:var(--sans);
   }
   .modal-section{
@@ -330,9 +389,16 @@
     color:var(--text);
     text-decoration:none;
     transition:color .15s;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
   }
   .modal-section ul li a:hover{
     color:var(--proart-gold);
+  }
+  .modal-section ul li a .link-icon{
+    color:var(--proart-gold);
+    font-size:11px;
   }
 
   /* ---------- architecture flow ---------- */
@@ -429,9 +495,9 @@
 
 <header>
   <div class="wrap">
-    <div class="brand"><b>danoguer</b>@portfolio:~$</div>
+    <a href="index.html" class="brand"><b>danoguer</b>@portfolio:~$</a>
     <nav>
-      <a href="#projects">Projects</a>
+      <a href="projects.html">Projects</a>
       <a href="#stack">Stack</a>
       <a href="#architecture">Architecture</a>
       <a href="#about">About</a>
@@ -480,7 +546,7 @@
       <div class="row" id="proj-sentinel">
         <div class="svc-name">Sentinel</div>
         <div class="svc-desc">
-          <p>A Go-based server daemon agent that collects system metrics and logs, leveraging the Gemini API to suggest actionable fixes and automate root-cause diagnosis.</p>
+          <p>A Go-based daemon that collects system telemetry and logs, using the Gemini API to analyze incidents, suggest actionable fixes, and assist with root-cause diagnosis.</p>
           <div class="stack">
             <span class="tag">Go</span><span class="tag">Docker</span><span class="tag">Gemini API</span><span class="tag">Linux</span><span class="tag">GitHub Actions</span><span class="tag">Prometheus</span><span class="tag">Grafana</span>
           </div>
@@ -491,9 +557,9 @@
       <div class="row" id="proj-cloudforge">
         <div class="svc-name">CloudForge</div>
         <div class="svc-desc">
-          <p>An Infrastructure as Code (IaC) environment on AWS deployed via Terraform and Ansible, orchestrating containerized Docker services with a focus on automation and reproducible deployments.</p>
+          <p>An AWS infrastructure stack provisioned with Terraform and configured with Ansible, running containerized services with Docker for automated and reproducible deployments.</p>
           <div class="stack">
-            <span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Docker</span><span class="tag">AWS</span>
+            <span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">GitHub Actions</span>
           </div>
           <a class="link-out" href="https://github.com/danoguer/cloudforge" target="_blank" rel="noopener">repo →</a>
         </div>
@@ -502,7 +568,7 @@
       <div class="row" id="proj-irc">
         <div class="svc-name">IRC Server</div>
         <div class="svc-desc">
-          <p>An Internet Relay Chat (IRC) server written in C++98, demonstrating manual resource management and low-level socket network programming without modern abstractions.</p>
+          <p>An IRC server implemented in C++98, focusing on low-level TCP socket programming, concurrent client handling, and manual resource management without modern abstractions.</p>
           <div class="stack">
             <span class="tag">C++98</span><span class="tag">Docker</span><span class="tag">Sockets</span><span class="tag">Networking</span><span class="tag">GitHub Actions</span>
           </div>
@@ -511,6 +577,12 @@
       </div>
 
     </div>
+
+    <!-- ENLACE A TODOS LOS PROYECTOS -->
+    <div class="projects-footer-action">
+      <a href="projects.html" class="projects-more-link">view all projects (9) →</a>
+    </div>
+
   </div>
 </section>
 
@@ -528,12 +600,7 @@
         <span class="stack-group-title">[ infrastructure &amp; devops ]</span>
         <div class="stack-tags">
           <div class="stack-badge" onclick="openStackModal('linux')"><img src="https://cdn.simpleicons.org/linux/e7e9ed" alt="Linux" loading="lazy"><span>Linux</span></div>
-          <div class="stack-badge" onclick="openStackModal('aws')">
-            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.763 10.035c0 .339-.028.618-.084.837a.82.084 0 0 1-.223.418.917.917 0 0 1-.418.223c-.195.056-.446.084-.753.084h-.474v-3.08h.613c.279 0 .502.028.67.084a.972.972 0 0 1 .446.251.84.84 0 0 1 .223.39c.037.167.056.381.056.643zm.307 2.454c.265-.195.46-.432.586-.711a2.38 2.38 0 0 0 .181-.962 2.21 2.21 0 0 0-.251-1.074 1.83 1.83 0 0 0-.67-.711 2.3 2.3 0 0 0-.962-.335c-.377-.056-.781-.084-1.213-.084H3.25v6.231h1.562v-2.008h.502c.39 0 .725.042 1.005.125.279.084.502.223.67.418.167.195.279.446.335.753.056.307.084.67.084 1.088v.251h1.562v-.418c0-.642-.07-1.157-.209-1.548a2.36 2.36 0 0 0-.706-.998zm4.877-3.905l-1.116 5.244-.977-5.244H8.38l1.45 6.231h1.45l1.479-6.231h-1.812zm5.72 1.953c0-.307-.056-.558-.167-.753a.92.92 0 0 0-.446-.418 1.81 1.83 0 0 0-.67-.195c-.251-.028-.502-.042-.753-.042h-1.283v2.745h1.172c.307 0 .586-.028.837-.084a1.08 1.08 0 0 0 .558-.279.94.94 0 0 0 .279-.418c.037-.167.056-.349.056-.556zm-1.841 2.398c.39 0 .725-.042 1.005-.125a1.86 1.86 0 0 0 .725-.418c.195-.195.335-.446.418-.753.084-.307.125-.67.125-1.088 0-.446-.042-.809-.125-1.088a1.69 1.69 0 0 0-.446-.725 2.11 2.3 0 0 0-.753-.418c-.307-.084-.642-.125-1.005-.125h-2.818v6.231h1.562v-2.008h1.283zm3.176 3.109c1.618-.474 3.097-1.144 4.103-2.036.195-.167.056-.39-.167-.251-1.311.837-3.039 1.339-4.828 1.339-2.511 0-4.8-1.004-6.228-2.678-.112-.139-.279.028-.167.167 1.562 1.842 4.103 2.958 6.942 2.958.112 0 .223 0 .345-.001zm3.824-1.283c-.223-.195-.893-.307-1.423-.139-.223.084-.446.223-.39.446.056.223.837.223 1.255.084.223-.056.781-.195.558-.391z"/>
-            </svg>
-            <span>AWS</span>
-          </div>
+          <div class="stack-badge" onclick="openStackModal('aws')"><img src="https://cdn.simpleicons.org/amazonwebservices/e7e9ed" alt="AWS" loading="lazy"><span>AWS</span></div>
           <div class="stack-badge" onclick="openStackModal('docker')"><img src="https://cdn.simpleicons.org/docker" alt="Docker" loading="lazy"><span>Docker</span></div>
           <div class="stack-badge" onclick="openStackModal('terraform')"><img src="https://cdn.simpleicons.org/terraform" alt="Terraform" loading="lazy"><span>Terraform</span></div>
           <div class="stack-badge" onclick="openStackModal('ansible')"><img src="https://cdn.simpleicons.org/ansible" alt="Ansible" loading="lazy"><span>Ansible</span></div>
@@ -568,7 +635,10 @@
     </div>
     <div class="modal-body">
       <div class="modal-title-row">
-        <span class="modal-title" id="modalTechName">Go</span>
+        <div class="modal-title-header">
+          <img id="modalTechIcon" src="" alt="" loading="lazy">
+          <span class="modal-title" id="modalTechName">Go</span>
+        </div>
         <p class="modal-summary" id="modalTechSummary"></p>
       </div>
 
@@ -671,38 +741,42 @@
     aws: {
       cmd: "aws",
       name: "AWS",
+      icon: "https://cdn.simpleicons.org/amazonwebservices/e7e9ed",
       summary: "Cloud platform used to deploy and operate production infrastructure.",
       projects: [
         { name: "CloudForge", link: "https://github.com/danoguer/cloudforge" },
-        { name: "This Portfolio", link: "#architecture" }
+        { name: "danoguer.dev", link: "https://github.com/danoguer/danoguer.dev" }
       ],
       experience: ["EC2", "S3", "IAM", "Route53", "CloudFront", "ACM", "Lambda", "Origin Access Control", "Secrets Manager"]
     },
     docker: {
       cmd: "docker",
       name: "Docker",
+      icon: "https://cdn.simpleicons.org/docker",
       summary: "Containerization platform for development, testing and deployment.",
       projects: [
         { name: "Sentinel", link: "https://github.com/danoguer/sentinel" },
         { name: "CloudForge", link: "https://github.com/danoguer/cloudforge" },
         { name: "IRC Server", link: "https://github.com/danoguer/irc-server" },
-        { name: "Inception (42)", link: "https://github.com/danoguer/inception" }
+        { name: "Inception", link: "https://github.com/danoguer/inception" }
       ],
       experience: ["Multi-stage builds", "Docker Compose", "Container networking", "Volumes & bind mounts", "Development environments", "Production deployments"]
     },
     terraform: {
       cmd: "terraform",
       name: "Terraform",
+      icon: "https://cdn.simpleicons.org/terraform",
       summary: "Infrastructure as Code for reproducible AWS environments.",
       projects: [
         { name: "CloudForge", link: "https://github.com/danoguer/cloudforge" },
-        { name: "This Portfolio", link: "#architecture" }
+        { name: "danoguer.dev", link: "https://github.com/danoguer/danoguer.dev" }
       ],
       experience: ["AWS resource provisioning", "Modular infrastructure", "Variables & outputs", "Remote state management", "Automated deployments"]
     },
     ansible: {
       cmd: "ansible",
       name: "Ansible",
+      icon: "https://cdn.simpleicons.org/ansible",
       summary: "Configuration management and server provisioning.",
       projects: [
         { name: "CloudForge", link: "https://github.com/danoguer/cloudforge" }
@@ -712,18 +786,20 @@
     githubactions: {
       cmd: "github-actions",
       name: "GitHub Actions",
+      icon: "https://cdn.simpleicons.org/githubactions",
       summary: "Continuous Integration and Continuous Deployment pipelines.",
       projects: [
         { name: "Sentinel", link: "https://github.com/danoguer/sentinel" },
         { name: "CloudForge", link: "https://github.com/danoguer/cloudforge" },
-        { name: "IRC Server", link: "https://github.com/danoguer/irc-server" },
-        { name: "This Portfolio", link: "#architecture" }
+        { name: "danoguer.dev", link: "https://github.com/danoguer/danoguer.dev" },
+        { name: "IRC Server", link: "https://github.com/danoguer/irc-server" }
       ],
       experience: ["CI/CD workflows", "Automated testing", "Docker image builds", "Terraform deployments", "Static website deployment"]
     },
     prometheus: {
       cmd: "prometheus",
       name: "Prometheus",
+      icon: "https://cdn.simpleicons.org/prometheus",
       summary: "Metrics collection and infrastructure observability.",
       projects: [
         { name: "Sentinel", link: "https://github.com/danoguer/sentinel" }
@@ -733,6 +809,7 @@
     grafana: {
       cmd: "grafana",
       name: "Grafana",
+      icon: "https://cdn.simpleicons.org/grafana",
       summary: "Visualization platform for infrastructure monitoring.",
       projects: [
         { name: "Sentinel", link: "https://github.com/danoguer/sentinel" }
@@ -742,6 +819,7 @@
     go: {
       cmd: "go",
       name: "Go",
+      icon: "https://cdn.simpleicons.org/go",
       summary: "Primary backend language for systems programming and automation.",
       projects: [
         { name: "Sentinel", link: "https://github.com/danoguer/sentinel" }
@@ -751,39 +829,45 @@
     c: {
       cmd: "c",
       name: "C",
+      icon: "https://cdn.simpleicons.org/c/e7e9ed",
       summary: "Foundation for low-level systems programming.",
       projects: [
-        { name: "Minishell (42)", link: "https://github.com/danoguer" },
-        { name: "Cub3D (42)", link: "https://github.com/danoguer" },
-        { name: "Philosophers (42)", link: "https://github.com/danoguer/philosophers" }
+        { name: "Minishell", link: "https://github.com/danoguer/minishell" },
+        { name: "Cub3D", link: "https://github.com/danoguer/cub3d" },
+        { name: "Philosophers", link: "https://github.com/danoguer/philosophers" }
       ],
       experience: ["Memory management", "Processes & signals", "Threads & synchronization", "Parsing", "Low-level programming", "Graphics programming"]
     },
     cpp: {
       cmd: "cpp",
       name: "C++",
+      icon: "https://cdn.simpleicons.org/cplusplus/e7e9ed",
       summary: "Object-oriented programming applied to network systems.",
       projects: [
-        { name: "IRC Server", link: "https://github.com/danoguer/irc-server" }
+        { name: "IRC Server", link: "https://github.com/danoguer/irc-server" },
+        { name: "CPP-modules", link: "https://github.com/danoguer/CPP-modules" }
       ],
       experience: ["TCP sockets", "IRC protocol", "Object-oriented design", "Manual resource management", "Network programming"]
     },
     bash: {
       cmd: "bash",
       name: "Bash",
+      icon: "https://cdn.simpleicons.org/gnubash/e7e9ed",
       summary: "Automation language used throughout every project.",
       projects: [
-        { name: "Used across all major projects", link: "#projects" }
+        { name: "Used across all major projects", link: "projects.html" }
       ],
       experience: ["Build automation", "Deployment scripts", "Environment setup", "Development tooling", "System administration"]
     },
     linux: {
       cmd: "linux",
       name: "Linux Systems",
+      icon: "https://cdn.simpleicons.org/linux/e7e9ed",
       summary: "Core Operating System for hosting, administration and debugging.",
       projects: [
         { name: "Sentinel", link: "https://github.com/danoguer/sentinel" },
-        { name: "CloudForge", link: "https://github.com/danoguer/cloudforge" }
+        { name: "CloudForge", link: "https://github.com/danoguer/cloudforge" },
+        { name: "Inception", link: "https://github.com/danoguer/inception" }
       ],
       experience: ["Systemd services", "Process management", "POSIX administration", "Log analysis & triage"]
     }
@@ -794,6 +878,8 @@
     if(!data) return;
 
     document.getElementById('modalCmdTech').innerText = data.cmd;
+    document.getElementById('modalTechIcon').src = data.icon;
+    document.getElementById('modalTechIcon').alt = data.name;
     document.getElementById('modalTechName').innerText = data.name;
     document.getElementById('modalTechSummary').innerText = data.summary;
 
@@ -808,7 +894,7 @@
         a.target = "_blank";
         a.rel = "noopener";
       }
-      a.innerHTML = `${p.name} ↗`;
+      a.innerHTML = `${p.name} <span class="link-icon">↗</span>`;
       a.onclick = function() { closeStackModalForce(); };
       li.appendChild(a);
       projList.appendChild(li);

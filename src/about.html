@@ -44,11 +44,11 @@
     background:var(--bg);
     color:var(--text);
     font-family:var(--sans);
-    line-height:1.75;
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;}
-  .wrap{max-width:720px; margin:0 auto; padding:0 24px;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
 
   /* ---------- top bar ---------- */
   header{
@@ -58,32 +58,37 @@
     border-bottom:1px solid var(--line);
   }
   header .wrap{
-    max-width:920px;
     display:flex; align-items:center; justify-content:space-between;
-    height:56px;
+    height:56px; gap:16px;
   }
-  .brand{font-family:var(--mono); font-size:14px; letter-spacing:0.02em; text-decoration:none;}
+  .brand{
+    font-family:var(--mono); font-size:14px; letter-spacing:0.02em; text-decoration:none;
+    white-space:nowrap; flex-shrink:0;
+  }
   .brand b{color:var(--proart-gold);}
-  nav{display:flex; gap:20px; font-family:var(--mono); font-size:13px; color:var(--text-dim);}
+  nav{
+    display:flex; gap:20px; font-family:var(--mono); font-size:13px; color:var(--text-dim);
+    margin-left:auto;
+  }
   nav a{text-decoration:none; transition:color .15s;}
   nav a:hover, nav a.active{color:var(--proart-gold);}
   .pill{
     display:flex; align-items:center; gap:6px;
     font-family:var(--mono); font-size:12px; color:var(--proart-gold);
     border:1px solid rgba(200, 155, 92, 0.3); padding:4px 10px; border-radius:999px;
-    background: var(--proart-gold-glow);
+    background: var(--proart-gold-glow); flex-shrink:0;
   }
   .dot{width:7px; height:7px; border-radius:50%; background:var(--proart-gold); box-shadow:0 0 8px var(--proart-gold); flex-shrink:0;}
 
   /* ---------- hero ---------- */
-  .hero{padding:56px 0 32px;}
+  .hero{padding:36px 0 20px;}
   .back-link{
     font-family:var(--mono);
     font-size:13px;
     color:var(--proart-gold);
     text-decoration:none;
     display:inline-block;
-    margin-bottom:20px;
+    margin-bottom:14px;
     transition:color .15s;
   }
   .back-link:hover{color:var(--proart-gold-hover);}
@@ -93,7 +98,7 @@
     font-weight:600;
     color:var(--proart-gold);
     letter-spacing:-0.02em;
-    margin-bottom:8px;
+    margin-bottom:6px;
   }
   .hero .tagline{
     font-family:var(--mono);
@@ -103,13 +108,13 @@
   }
 
   /* ---------- editorial timeline layout ---------- */
-  section{padding:28px 0;}
+  section{padding:12px 0;}
   section::after{
     content: "";
     display: table;
     clear: both;
   }
-  .sec-head{margin-bottom:14px;}
+  .sec-head{margin-bottom:8px;}
   .sec-head h2{
     font-family:var(--mono);
     font-size:14px;
@@ -121,7 +126,8 @@
   p{
     color:var(--text-dim);
     font-size:15px;
-    margin-bottom:16px;
+    margin-bottom:10px;
+    line-height:1.75;
   }
   p:last-child{margin-bottom:0;}
   p strong{
@@ -132,8 +138,8 @@
   /* ---------- FLOATING IMAGE WITH PERMANENT GOLD BORDER & CAPTION ---------- */
   .img-container{
     float:right;
-    width:290px;
-    margin:6px 0 16px 24px;
+    width:310px;
+    margin:2px 0 10px 24px;
   }
   .img-side{
     width:100%;
@@ -156,7 +162,7 @@
     font-size:11px;
     color:var(--text-dim);
     text-align:right;
-    margin-top:6px;
+    margin-top:4px;
     display:block;
   }
 
@@ -164,28 +170,29 @@
     text-align:center;
     color:var(--line);
     font-family:var(--mono);
-    font-size:16px;
-    padding:8px 0;
+    font-size:14px;
+    padding:2px 0;
     user-select:none;
   }
 
   /* ---------- final closing block ---------- */
   .closing-block p{
     color:var(--text);
-    font-size:16px;
+    font-size:15px;
   }
   .closing-punchline{
     font-family:var(--mono);
     font-size:15px;
     color:var(--proart-gold);
-    margin-top:20px;
+    margin-top:12px;
   }
 
-  @media (max-width:680px){
+  @media (max-width:640px){
+    .brand{font-size:12px;}
     .img-container{
       float:none;
       width:100%;
-      margin:12px 0 16px 0;
+      margin:10px 0 14px 0;
     }
     .img-caption{
       text-align:left;
@@ -195,9 +202,8 @@
   }
 
   /* ---------- footer ---------- */
-  footer{padding:40px 0 60px;}
+  footer{padding:32px 0 48px;}
   footer .wrap{
-    max-width:920px;
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
   }
   footer p{font-family:var(--mono); font-size:12px; color:var(--text-dim);}
@@ -230,11 +236,10 @@
 
 <header>
   <div class="wrap">
-    <a href="index.html" class="brand"><b>danoguer</b>@portfolio:~$ cat about.txt</a>
+    <a href="index.html" class="brand"><b>danoguer</b>@portfolio:~/about$</a>
     <nav>
-      <a href="index.html#projects">Projects</a>
-      <a href="index.html#stack">Stack</a>
-      <a href="index.html#architecture">Architecture</a>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
       <a href="about.html" class="active">About</a>
       <a href="index.html#contact">Contact</a>
     </nav>
@@ -255,7 +260,7 @@
       <h2>// perspective</h2>
     </div>
     <p>
-      My path into engineering wasn't linear. For a decade, I competed in environments where making fast decisions under pressure was a daily requirement. Over time, that mindset naturally drew me toward systems engineering—where I found something that clicked: understanding how things work under the hood, finding where they break, and building them to be resilient.
+      My path into engineering wasn't linear. For a decade, I competed in environments where making fast decisions under pressure was a daily requirement. That mindset naturally drew me toward systems engineering: understanding how things work under the hood, finding where they break, and building them to be resilient.
     </p>
   </section>
 
@@ -271,10 +276,10 @@
       <figcaption class="img-caption">// post LLN match</figcaption>
     </figure>
     <p>
-      For five years, I competed professionally in <em>League of Legends</em> as <em>eledion</em> across LLN (the top-tier Latin American league) and Superliga (Spain's premier national league). Competing at that level meant practicing daily, reviewing match footage relentlessly, and executing real-time decisions under incomplete information.
+      For five years, I competed professionally in <em>League of Legends</em> as <em>eledion</em> across LLN (Latin America) and Superliga (Spain). It required relentless match analysis and real-time execution under incomplete information.
     </p>
     <p>
-      Over time, I learned that real improvement wasn't just about playing better—it was about understanding why a decision was good or bad, regardless of the immediate outcome.
+      Competing at the top level taught me to evaluate decision quality over short-term outcomes, while sharpening concise team communication under high pressure and constant change. It laid the foundation for dissecting complex failure modes with structured analysis.
     </p>
   </section>
 
@@ -286,10 +291,7 @@
       <h2>// poker</h2>
     </div>
     <p>
-      Poker brought me to a very different kind of competition. There was no team and no shared strategy; every decision relied entirely on incomplete data, probabilities, and strict risk management.
-    </p>
-    <p>
-      It taught me a principle that stays with me today: <strong>a good decision doesn't always yield a good short-term outcome, and a bad outcome doesn't mean the decision was wrong.</strong>
+      Poker brought a different kind of competition: solo, probability-driven, and centered on strict risk management under incomplete data. It reinforced a core principle: <strong>a good decision doesn't always yield a good short-term outcome, and a bad outcome doesn't mean the decision was wrong.</strong>
     </p>
   </section>
 
@@ -305,13 +307,10 @@
       <figcaption class="img-caption">// 42 madrid piscine</figcaption>
     </figure>
     <p>
-      After years of competing, I signed up for <strong>42 School</strong> without fully knowing what to expect. Passing the initial online logic tests was just the gatekeeper to <em>the Piscine</em>—a 26-day immersion run where you're dropped into a lab filled with terminals, zero lectures, and no instruction manual.
+      I entered <strong>42 School</strong> through <em>the Piscine</em>—a 26-day immersion bootcamp with zero lectures or manuals, spending 14-hour days debugging C scripts and peer-evaluating code in terminal environments.
     </p>
     <p>
-      Spending 12 to 14 hours a day wrestling with C, failing shell scripts, and evaluating each other's code forced a total reset in how I approached learning. There were no shortcuts: if a program segfaulted, you had to read man pages, debug line by line, and figure out the system's behavior through trial, error, and peer discussion.
-    </p>
-    <p>
-      Once accepted into the main curriculum, that problem-solving rhythm stayed. Working directly in C and C++ meant dealing with raw primitives—<strong>processes, memory allocation, signals, thread concurrency, sockets, and protocol handling</strong>. It built a clear, hands-on mental model of how operating systems and networks behave when things break.
+      Moving into the main curriculum meant working directly with low-level primitives: <strong>processes, memory allocation, signals, thread concurrency, sockets, and protocol handling</strong>. It built a hands-on mental model of how operating systems and networks behave when things break.
     </p>
   </section>
 
@@ -323,10 +322,7 @@
       <h2>// devops_cloud</h2>
     </div>
     <p>
-      That low-level foundation naturally pushed me toward infrastructure. I became fascinated not only with how application code runs, but with the systems surrounding it: how infrastructure is provisioned, monitored, scaled, and recovered when failure occurs.
-    </p>
-    <p>
-      Moving higher up the stack was a natural progression—bringing the same low-level rigor to cloud architecture, operational resilience, and automated environments.
+      That low-level foundation naturally led me to infrastructure. I became fascinated with how systems surrounding applications are provisioned, monitored, scaled, and recovered—bringing the same low-level rigor to cloud architecture, operational resilience, and automated environments.
     </p>
   </section>
 
@@ -338,10 +334,7 @@
       <h2>// today</h2>
     </div>
     <p>
-      Today, I work at the intersection of systems, infrastructure, and cloud. I enjoy getting close to the underlying mechanics, understanding failure modes, and turning that understanding into simpler, more reliable systems.
-    </p>
-    <p>
-      I don't know exactly where the path will lead next. That is part of the appeal.
+      Today, I work at the intersection of systems, infrastructure, and cloud—turning complex failure modes into simpler, more reliable systems.
     </p>
     <div class="closing-punchline">
       I've spent most of my life operating in environments where uncertainty was the only constant. Engineering turned out to be another one.

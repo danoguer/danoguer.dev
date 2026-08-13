@@ -59,18 +59,24 @@
   }
   header .wrap{
     display:flex; align-items:center; justify-content:space-between;
-    height:56px;
+    height:56px; gap:16px;
   }
-  .brand{font-family:var(--mono); font-size:14px; letter-spacing:0.02em; text-decoration:none;}
+  .brand{
+    font-family:var(--mono); font-size:14px; letter-spacing:0.02em; text-decoration:none;
+    white-space:nowrap; flex-shrink:0;
+  }
   .brand b{color:var(--proart-gold);}
-  nav{display:flex; gap:20px; font-family:var(--mono); font-size:13px; color:var(--text-dim);}
+  nav{
+    display:flex; gap:20px; font-family:var(--mono); font-size:13px; color:var(--text-dim);
+    margin-left:auto;
+  }
   nav a{text-decoration:none; transition:color .15s;}
   nav a:hover, nav a.active{color:var(--proart-gold);}
   .pill{
     display:flex; align-items:center; gap:6px;
     font-family:var(--mono); font-size:12px; color:var(--proart-gold);
     border:1px solid rgba(200, 155, 92, 0.3); padding:4px 10px; border-radius:999px;
-    background: var(--proart-gold-glow);
+    background: var(--proart-gold-glow); flex-shrink:0;
   }
   .dot{width:7px; height:7px; border-radius:50%; background:var(--proart-gold); box-shadow:0 0 8px var(--proart-gold); flex-shrink:0;}
 
@@ -145,6 +151,7 @@
   .row .link-out:hover{color:var(--proart-gold);}
 
   @media (max-width:640px){
+    .brand{font-size:12px;}
     .row{grid-template-columns:1fr; gap:10px;}
     nav{gap:12px;}
     .pill{display:none;}
@@ -187,9 +194,8 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="projects.html" class="active">Projects</a>
-      <a href="index.html#stack">Stack</a>
-      <a href="index.html#architecture">Architecture</a>
-      <a href="index.html#about">About</a>
+      <a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
     <div class="pill"><span class="dot"></span>Open to opportunities</div>
   </div>
@@ -347,7 +353,7 @@
 
 <footer id="contact">
   <div class="wrap">
-    <p>// AWS SAA-C03 Certified</p>
+    <p>// Cloud & DevOps Engineer</p>
     <div class="links">
       <a href="https://github.com/danoguer" target="_blank" rel="noopener" aria-label="GitHub">
         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>

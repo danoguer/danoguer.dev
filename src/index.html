@@ -59,18 +59,24 @@
   }
   header .wrap{
     display:flex; align-items:center; justify-content:space-between;
-    height:56px;
+    height:56px; gap:16px;
   }
-  .brand{font-family:var(--mono); font-size:14px; letter-spacing:0.02em; text-decoration:none;}
+  .brand{
+    font-family:var(--mono); font-size:14px; letter-spacing:0.02em; text-decoration:none;
+    white-space:nowrap; flex-shrink:0;
+  }
   .brand b{color:var(--proart-gold);}
-  nav{display:flex; gap:20px; font-family:var(--mono); font-size:13px; color:var(--text-dim);}
+  nav{
+    display:flex; gap:20px; font-family:var(--mono); font-size:13px; color:var(--text-dim);
+    margin-left:auto;
+  }
   nav a{text-decoration:none; transition:color .15s;}
-  nav a:hover{color:var(--proart-gold);}
+  nav a:hover, nav a.active{color:var(--proart-gold);}
   .pill{
     display:flex; align-items:center; gap:6px;
     font-family:var(--mono); font-size:12px; color:var(--proart-gold);
     border:1px solid rgba(200, 155, 92, 0.3); padding:4px 10px; border-radius:999px;
-    background: var(--proart-gold-glow);
+    background: var(--proart-gold-glow); flex-shrink:0;
   }
   .dot{width:7px; height:7px; border-radius:50%; background:var(--proart-gold); box-shadow:0 0 8px var(--proart-gold); flex-shrink:0;}
 
@@ -545,6 +551,7 @@
     .arch-pipeline{grid-template-columns:1fr;}
   }
   @media (max-width:640px){
+    .brand{font-size:12px;}
     .row, .about-item, .form-grid{grid-template-columns:1fr; gap:8px;}
     .input-btn-row {flex-direction: column;}
     .submit-btn {padding: 10px 14px;}
@@ -587,6 +594,7 @@
   <div class="wrap">
     <a href="index.html" class="brand"><b>danoguer</b>@portfolio:~$</a>
     <nav>
+      <a href="index.html" class="active">Home</a>
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
       <a href="#contact">Contact</a>

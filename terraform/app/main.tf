@@ -19,10 +19,10 @@ resource "aws_s3_bucket_public_access_block" "mybucket" {
 resource "aws_s3_object" "object" {
   bucket       = aws_s3_bucket.mybucket.id
   key          = "index.html"
-  source       = "${path.module}/../src/index.html"
+  source       = "${path.module}/../../src/index.html"
   content_type = "text/html"
 
-  etag = filemd5("${path.module}/../src/index.html")
+  etag = filemd5("${path.module}/../../src/index.html")
 }
 
 data "aws_iam_policy_document" "mys3policy" {

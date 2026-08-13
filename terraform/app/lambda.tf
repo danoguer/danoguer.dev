@@ -1,7 +1,7 @@
 data "archive_file" "lambda_zip" {
   type        = "zip"
-  source_file = "${path.module}/../lambda/bootstrap"
-  output_path = "${path.module}/../lambda/function.zip"
+  source_file = "${path.module}/../../lambda/bootstrap"
+  output_path = "${path.module}/../../lambda/function.zip"
 }
 
 resource "aws_iam_role" "lambda_exec_role" {

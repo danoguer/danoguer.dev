@@ -1,11 +1,12 @@
-data "tls_certificate" "github" {
-  url = "https://token.actions.githubusercontent.com/.well-known/openid-configuration"
-}
-
+# 1. Registrar el proveedor OIDC de GitHub con la lista de huellas actualizadas de GitHub
 resource "aws_iam_openid_connect_provider" "github" {
   url             = "https://token.actions.githubusercontent.com"
   client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = [data.tls_certificate.github.certificates[0].sha1_fingerprint]
+  thumbprint_list = [
+    "6938fd4d98bab03faadb97b34396831e3780aea1",
+    "1c3d101d0a520268579d4dd4944d18fa2f4f2c5f",
+    "15e29108718111e59b3d419245541a72d733917e"
+  ]
 }
 
 data "aws_iam_policy_document" "github_actions_assume_role" {

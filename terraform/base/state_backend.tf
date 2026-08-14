@@ -1,4 +1,3 @@
-# 1. Bucket S3 para almacenar el archivo terraform.tfstate
 resource "aws_s3_bucket" "tf_state" {
   bucket        = "danoguer-dev-tfstate-portfolio-bucket"
   force_destroy = false

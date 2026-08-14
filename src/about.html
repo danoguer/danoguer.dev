@@ -1,363 +1,1163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Me — Daniel Nogueras del Río</title>
-<meta name="title" content="About Me — Daniel Nogueras del Río">
-<meta name="description" content="My journey through competition, low-level systems at 42 School, and Cloud Infrastructure.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Open Graph / Facebook / LinkedIn / WhatsApp / Discord -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://danoguer.dev/about.html">
-<meta property="og:title" content="About Me — Daniel Nogueras del Río">
-<meta property="og:description" content="My journey through competition, low-level systems at 42 School, and Cloud Infrastructure.">
-<meta property="og:image" content="https://danoguer.dev/og-image.jpg">
+  <title>About — Daniel Nogueras Del Río</title>
+  <meta
+    name="description"
+    content="My journey through professional competition, low-level systems at 42 School, and Cloud Infrastructure."
+  >
 
-<!-- Twitter / X -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://danoguer.dev/about.html">
-<meta property="twitter:title" content="About Me — Daniel Nogueras del Río">
-<meta property="twitter:description" content="My journey through competition, low-level systems at 42 School, and Cloud Infrastructure.">
-<meta property="twitter:image" content="https://danoguer.dev/og-image.jpg">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://danoguer.dev/about.html">
+  <meta property="og:title" content="About — Daniel Nogueras Del Río">
+  <meta
+    property="og:description"
+    content="My journey through professional competition, low-level systems at 42 School, and Cloud Infrastructure."
+  >
+  <meta property="og:image" content="https://danoguer.dev/og-image.jpg">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    /* PALETA ASUS PROART ENGINEERING */
-    --bg: #0e0f12;               /* Negro ProArt neutro y profundo */
-    --bg-raised: #15161b;        /* Grafito oscuro para componentes */
-    --line: #262730;             /* Bordes metálicos oscuros */
-    --text: #ededf0;             /* Blanco titanio para lectura clara */
-    --text-dim: #848694;         /* Gris aluminio / metálico */
-    --proart-gold: #c89b5c;      /* Oro/Cobre ProArt metálico */
-    --proart-gold-hover: #e0b06b;/* Brillo dorado en hover */
-    --proart-gold-glow: rgba(200, 155, 92, 0.12); /* Resplandor dorado neón */
-    --mono: 'IBM Plex Mono', monospace;
-    --sans: 'IBM Plex Sans', sans-serif;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--sans);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;}
-  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@700;800&family=Space+Grotesk:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
 
-  /* ---------- top bar ---------- */
-  header{
-    position:sticky; top:0; z-index:10;
-    background:rgba(14,15,18,0.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  header .wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    height:56px; gap:16px;
-  }
-  .brand{
-    font-family:var(--mono); font-size:14px; letter-spacing:0.02em; text-decoration:none;
-    white-space:nowrap; flex-shrink:0;
-  }
-  .brand b{color:var(--proart-gold);}
-  nav{
-    display:flex; gap:20px; font-family:var(--mono); font-size:13px; color:var(--text-dim);
-    margin-left:auto;
-  }
-  nav a{text-decoration:none; transition:color .15s;}
-  nav a:hover, nav a.active{color:var(--proart-gold);}
-  .pill{
-    display:flex; align-items:center; gap:6px;
-    font-family:var(--mono); font-size:12px; color:var(--proart-gold);
-    border:1px solid rgba(200, 155, 92, 0.3); padding:4px 10px; border-radius:999px;
-    background: var(--proart-gold-glow); flex-shrink:0;
-  }
-  .dot{width:7px; height:7px; border-radius:50%; background:var(--proart-gold); box-shadow:0 0 8px var(--proart-gold); flex-shrink:0;}
+  <style>
+    /* =========================================================
+       DESIGN SYSTEM
+       ========================================================= */
 
-  /* ---------- hero ---------- */
-  .hero{padding:36px 0 20px;}
-  .back-link{
-    font-family:var(--mono);
-    font-size:13px;
-    color:var(--proart-gold);
-    text-decoration:none;
-    display:inline-block;
-    margin-bottom:14px;
-    transition:color .15s;
-  }
-  .back-link:hover{color:var(--proart-gold-hover);}
-  .hero h1{
-    font-family:var(--mono);
-    font-size:32px;
-    font-weight:600;
-    color:var(--proart-gold);
-    letter-spacing:-0.02em;
-    margin-bottom:6px;
-  }
-  .hero .tagline{
-    font-family:var(--mono);
-    font-size:16px;
-    color:var(--text-dim);
-    font-weight:500;
-  }
+    :root {
+      --bg: #070708;
+      --bg-raised: #0f0f12;
+      --bg-surface: #141418;
 
-  /* ---------- editorial timeline layout ---------- */
-  section{padding:12px 0;}
-  section::after{
-    content: "";
-    display: table;
-    clear: both;
-  }
-  .sec-head{margin-bottom:8px;}
-  .sec-head h2{
-    font-family:var(--mono);
-    font-size:14px;
-    font-weight:500;
-    color:var(--proart-gold);
-    letter-spacing:0.02em;
-  }
+      --line: #1d1b19;
+      --line-light: #2a2723;
+      --line-hairline: rgba(255, 255, 255, 0.035);
 
-  p{
-    color:var(--text-dim);
-    font-size:15px;
-    margin-bottom:10px;
-    line-height:1.75;
-  }
-  p:last-child{margin-bottom:0;}
-  p strong{
-    color:var(--text);
-    font-weight:600;
-  }
+      --text: #f3f2ee;
+      --text-dim: #96928b;
+      --text-muted: #5e5a54;
 
-  /* ---------- FLOATING IMAGE WITH PERMANENT GOLD BORDER & CAPTION ---------- */
-  .img-container{
-    float:right;
-    width:310px;
-    margin:2px 0 10px 24px;
-  }
-  .img-side{
-    width:100%;
-    aspect-ratio:16 / 10;
-    object-fit:cover;
-    object-position:top center;
-    border-radius:4px;
-    border:1px solid var(--proart-gold);
-    opacity:0.9;
-    filter:grayscale(10%);
-    transition:opacity .2s ease, filter .2s ease;
-    display:block;
-  }
-  .img-side:hover{
-    opacity:1;
-    filter:grayscale(0%);
-  }
-  .img-caption{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--text-dim);
-    text-align:right;
-    margin-top:4px;
-    display:block;
-  }
+      --gold: #d8a868;
+      --gold-hover: #edd19c;
+      --gold-glow: rgba(216, 168, 104, 0.18);
+      --gold-soft: rgba(216, 168, 104, 0.08);
 
-  .flow-arrow{
-    text-align:center;
-    color:var(--line);
-    font-family:var(--mono);
-    font-size:14px;
-    padding:2px 0;
-    user-select:none;
-  }
+      --green: #4caf50;
+      --red: #f44336;
 
-  /* ---------- final closing block ---------- */
-  .closing-block p{
-    color:var(--text);
-    font-size:15px;
-  }
-  .closing-punchline{
-    font-family:var(--mono);
-    font-size:15px;
-    color:var(--proart-gold);
-    margin-top:12px;
-  }
+      --mono: "IBM Plex Mono", monospace;
+      --tech: "Space Grotesk", sans-serif;
+      --tech-display: "JetBrains Mono", monospace;
+      --sans: "Inter", sans-serif;
 
-  @media (max-width:640px){
-    .brand{font-size:12px;}
-    .img-container{
-      float:none;
-      width:100%;
-      margin:10px 0 14px 0;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+      --header-height: 56px;
+      --content-width: 1240px;
     }
-    .img-caption{
-      text-align:left;
-    }
-    nav{gap:12px;}
-    .pill{display:none;}
-  }
 
-  /* ---------- footer ---------- */
-  footer{padding:32px 0 48px;}
-  footer .wrap{
-    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
-  }
-  footer p{font-family:var(--mono); font-size:12px; color:var(--text-dim);}
-  footer .links{display:flex; gap:18px; align-items:center;}
-  footer .links a{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    opacity:0.75;
-    transition:opacity .15s, transform .15s;
-    text-decoration:none;
-  }
-  footer .links a:hover{
-    opacity:1;
-    transform:translateY(-2px);
-  }
-  footer .links svg{
-    width:20px;
-    height:20px;
-    fill:var(--text);
-    display:block;
-    transition:fill .15s;
-  }
-  footer .links a:hover svg{
-    fill:var(--proart-gold);
-  }
-</style>
+    /* =========================================================
+       RESET & BASE
+       ========================================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    /* =========================================================
+       GLOBAL LAYOUT
+       ========================================================= */
+
+    .wrap {
+      width: min(100%, var(--content-width));
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+    }
+
+    .wrap::before {
+      content: "";
+      position: absolute;
+      left: 32px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line-hairline);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--header-height);
+      background: rgba(7, 7, 8, 0.40);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    header .wrap {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    header .wrap::before {
+      display: none;
+    }
+
+    .brand {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s var(--ease);
+    }
+
+    .brand b {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .brand:hover {
+      color: var(--text);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    nav a {
+      text-decoration: none;
+      transition: color 0.2s var(--ease);
+      cursor: pointer;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--gold);
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 3px 10px;
+      border: 1px solid rgba(216, 168, 104, 0.35);
+      border-radius: 999px;
+      background: var(--gold-glow);
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    /* =========================================================
+       PAGE HERO
+       ========================================================= */
+
+    .page-hero {
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 110px 0 85px 18px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          circle at 55% 35%,
+          rgba(216, 168, 104, 0.075),
+          transparent 55%
+        );
+    }
+
+    .page-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(216, 168, 104, 0.025),
+          transparent
+        );
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .page-kicker {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .page-title {
+      font-family: var(--tech-display);
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      color: #fff;
+      margin-bottom: 22px;
+    }
+
+    .page-title span {
+      color: var(--gold);
+    }
+
+    .page-description {
+      max-width: 700px;
+      color: var(--text-dim);
+      font-size: 15.5px;
+      line-height: 1.75;
+    }
+
+    /* =========================================================
+       EDITORIAL STORY TIMELINE (MATCHING HERO LIGHTING)
+       ========================================================= */
+
+    .story-section {
+      padding: 90px 0 110px 18px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Misma iluminación radial y lineal del Hero */
+    .story-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          circle at 55% 25%,
+          rgba(216, 168, 104, 0.075),
+          transparent 55%
+        ),
+        radial-gradient(
+          circle at 45% 75%,
+          rgba(216, 168, 104, 0.065),
+          transparent 55%
+        );
+    }
+
+    .story-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(216, 168, 104, 0.025),
+          transparent
+        );
+    }
+
+    .story-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1040px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .story-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 40px;
+      position: relative;
+      overflow: hidden;
+      transition:
+        border-color 0.3s var(--ease),
+        box-shadow 0.3s var(--ease),
+        transform 0.3s var(--ease);
+    }
+
+    .story-card:hover {
+      border-color: rgba(216, 168, 104, 0.42);
+      box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.35),
+        0 0 30px rgba(216, 168, 104, 0.035);
+      transform: translateY(-2px);
+    }
+
+    .story-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+    }
+
+    .story-index {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .story-tagline {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .story-title {
+      font-family: var(--tech);
+      font-size: clamp(24px, 2.8vw, 32px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .story-body {
+      color: var(--text-dim);
+      font-size: 15px;
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .story-body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* STORY FIGURE & PHOTO */
+    .story-figure {
+      float: right;
+      width: 370px;
+      margin: 4px 0 20px 34px;
+      background: var(--bg);
+      border: 1px solid var(--line-light);
+      border-radius: 6px;
+      padding: 8px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .story-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      display: block;
+      filter: grayscale(30%) contrast(1.05);
+      transition: filter 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+
+    .story-figure:hover .story-img {
+      filter: grayscale(0%) contrast(1.12);
+      transform: scale(1.01);
+    }
+
+    .story-caption {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: right;
+      margin-top: 8px;
+      padding-right: 4px;
+    }
+
+    .story-divider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--gold);
+      opacity: 0.35;
+      font-family: var(--mono);
+      font-size: 14px;
+      user-select: none;
+      margin: -12px 0;
+    }
+
+    /* CLOSING BANNER (CLEAN, NO BOTTOM BOX SHADOW) */
+    .closing-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--line);
+      padding: 44px 40px;
+      border-radius: 8px;
+      position: relative;
+      transition: border-color 0.3s var(--ease);
+    }
+
+    .closing-card:hover {
+      border-color: rgba(216, 168, 104, 0.42);
+    }
+
+    .closing-quote {
+      font-family: var(--sans);
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .closing-punchline {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border-left: 2px solid var(--gold);
+      padding-left: 16px;
+    }
+
+    /* =========================================================
+       CONTACT CARD OVERLAY (MODAL)
+       ========================================================= */
+
+    .contact-card-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 7, 8, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .contact-card-overlay.active {
+      display: flex;
+    }
+
+    .contact-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--line-light);
+      border-radius: 10px;
+      padding: 36px 32px;
+      width: min(100%, 520px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--gold-glow);
+      position: relative;
+      animation: modalScaleUp 0.3s var(--ease) forwards;
+    }
+
+    @keyframes modalScaleUp {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .contact-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+
+    .contact-card-title {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .contact-card-close {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.2s var(--ease);
+      padding: 0;
+      line-height: 1;
+    }
+
+    .contact-card-close:hover {
+      color: var(--gold);
+    }
+
+    .contact-intro {
+      margin-bottom: 20px;
+      color: var(--text-dim);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px 14px;
+      outline: none;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 13px;
+      transition: border-color 0.2s var(--ease);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .contact-submit {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+      border: none;
+      background: transparent;
+      color: var(--gold);
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+
+    .contact-submit:hover {
+      color: var(--gold-hover);
+      transform: translateX(3px);
+    }
+
+    .form-status {
+      margin-top: 4px;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .form-status.success {
+      color: var(--green);
+    }
+
+    .form-status.error {
+      color: var(--red);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      padding: 56px 0 56px 18px;
+      position: relative;
+      border-top: none;
+      z-index: 1;
+    }
+
+    footer .wrap::before {
+      display: none;
+    }
+
+    footer .wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 14px;
+    }
+
+    .footer-contact-prompt {
+      margin-top: 10px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .footer-contact-prompt a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .footer-contact-prompt a:hover {
+      color: var(--gold-hover);
+      transform: translateX(3px);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 500;
+      align-self: center;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      transition: color 0.2s var(--ease);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 900px) {
+      .story-figure {
+        width: 320px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .wrap {
+        padding: 0 16px;
+      }
+
+      .wrap::before {
+        display: none;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .status-pill {
+        margin-left: auto;
+      }
+
+      .page-hero {
+        padding: 70px 0 60px;
+      }
+
+      .page-title {
+        font-size: clamp(34px, 9vw, 48px);
+      }
+
+      .story-section {
+        padding: 60px 0 70px;
+        padding-left: 0;
+      }
+
+      .story-card {
+        padding: 28px 20px;
+      }
+
+      .story-figure {
+        float: none;
+        width: 100%;
+        margin: 14px 0 18px 0;
+      }
+
+      .story-caption {
+        text-align: left;
+      }
+
+      footer {
+        padding-left: 0;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <a href="index.html" class="brand"><b>danoguer</b>@portfolio:~/about$</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="about.html" class="active">About</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
-    <div class="pill"><span class="dot"></span>Open to opportunities</div>
+  <!-- =======================================================
+       HEADER
+       ======================================================== -->
+
+  <header>
+    <div class="wrap">
+      <a href="index.html" class="brand">
+        <b>danoguer</b>@portfolio:~/about$
+      </a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html" class="active">About</a>
+        <a onclick="openContactCard()">Contact</a>
+      </nav>
+
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        Open to work
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =====================================================
+         PAGE HERO
+         ===================================================== -->
+
+    <section class="page-hero">
+      <div class="wrap">
+        <div class="page-hero-content">
+          <div class="page-kicker">
+            // Personal Journey
+          </div>
+
+          <h1 class="page-title">
+            Built for <span>uncertainty.</span>
+          </h1>
+
+          <p class="page-description">
+            From professional competition and low-level C internals to resilient cloud infrastructure.
+            Understanding the mental models that shape how I build and debug distributed systems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         EDITORIAL TIMELINE STORY
+         ===================================================== -->
+
+    <section class="story-section">
+      <div class="wrap">
+        <div class="story-container">
+
+          <!-- 01 // PERSPECTIVE -->
+          <article class="story-card">
+            <div class="story-card-header">
+              <span class="story-index">01 / Foundation</span>
+              <span class="story-tagline">[ Mindset &amp; Execution ]</span>
+            </div>
+            <h2 class="story-title">Perspective</h2>
+            <div class="story-body">
+              <p>
+                My path into engineering wasn't linear. For a decade, I competed in environments where making fast decisions under pressure was a daily requirement.
+              </p>
+              <p>
+                That mindset naturally drew me toward <strong>systems engineering</strong>: understanding how things work under the hood, finding where they break, and building them to remain predictable and resilient.
+              </p>
+            </div>
+          </article>
+
+          <div class="story-divider">↓</div>
+
+          <!-- 02 // LEAGUE OF LEGENDS -->
+          <article class="story-card">
+            <div class="story-card-header">
+              <span class="story-index">02 / Competition</span>
+              <span class="story-tagline">[ 5 Years Professional Esports ]</span>
+            </div>
+            <h2 class="story-title">League of Legends</h2>
+
+            <figure class="story-figure">
+              <img
+                src="../images/eledion.png"
+                alt="Daniel Nogueras Del Río competing in League of Legends"
+                class="story-img"
+                loading="lazy"
+              >
+              <figcaption class="story-caption">// post LLN match stage</figcaption>
+            </figure>
+
+            <div class="story-body">
+              <p>
+                For five years, I competed professionally in <em>League of Legends</em> as <em>eledion</em> across LLN (Latin America) and Superliga (Spain). It required relentless match analysis, macro strategy, and real-time execution under incomplete information.
+              </p>
+              <p>
+                Competing at the top level taught me to evaluate <strong>decision quality over short-term variance</strong>, while sharpening concise communication under high pressure. It laid the foundation for dissecting complex failure modes with structured, root-cause analysis.
+              </p>
+            </div>
+          </article>
+
+          <div class="story-divider">↓</div>
+
+          <!-- 03 // PROFESSIONAL POKER -->
+          <article class="story-card">
+            <div class="story-card-header">
+              <span class="story-index">03 / Risk Assessment</span>
+              <span class="story-tagline">[ Quantitative Probability ]</span>
+            </div>
+            <h2 class="story-title">Professional Poker</h2>
+            <div class="story-body">
+              <p>
+                Poker brought a different kind of competition: solo, probability-driven, and centered on strict risk management under incomplete data.
+              </p>
+              <p>
+                It reinforced a core principle that directly translates to distributed infrastructure: <strong>a good decision doesn't always yield a good short-term outcome, and a bad outcome doesn't mean the original architecture was wrong.</strong>
+              </p>
+            </div>
+          </article>
+
+          <div class="story-divider">↓</div>
+
+          <!-- 04 // 42 SCHOOL -->
+          <article class="story-card">
+            <div class="story-card-header">
+              <span class="story-index">04 / Low-Level Core</span>
+              <span class="story-tagline">[ Peer-to-Peer Systems Immersion ]</span>
+            </div>
+            <h2 class="story-title">42 School</h2>
+
+            <figure class="story-figure">
+              <img
+                src="../images/piscine.png"
+                alt="Daniel Nogueras Del Río during 42 Madrid Piscine"
+                class="story-img"
+                loading="lazy"
+              >
+              <figcaption class="story-caption">// 42 madrid piscine</figcaption>
+            </figure>
+
+            <div class="story-body">
+              <p>
+                I entered <strong>42 School</strong> through <em>the Piscine</em>—a 26-day immersion bootcamp with zero lectures or manuals, spending 14-hour days debugging C scripts and peer-evaluating code strictly in POSIX terminal environments.
+              </p>
+              <p>
+                Moving into the main curriculum meant working directly with foundational low-level primitives: <strong>processes, heap memory allocation, signals, thread concurrency, POSIX sockets, and protocol handling</strong>. It built a hands-on mental model of how operating systems and networks behave when things fail.
+              </p>
+            </div>
+          </article>
+
+          <div class="story-divider">↓</div>
+
+          <!-- 05 // DEVOPS & CLOUD -->
+          <article class="story-card">
+            <div class="story-card-header">
+              <span class="story-index">05 / Infrastructure</span>
+              <span class="story-tagline">[ Automation &amp; Resilience ]</span>
+            </div>
+            <h2 class="story-title">Cloud &amp; DevOps</h2>
+            <div class="story-body">
+              <p>
+                That low-level foundation naturally led me to infrastructure. I became fascinated with how systems surrounding applications are provisioned, monitored, scaled, and recovered.
+              </p>
+              <p>
+                Today I bring that same first-principles rigor to cloud architecture: building automated CI/CD pipelines, containerized environments, and declarative infrastructure that eliminate manual friction and failure points.
+              </p>
+            </div>
+          </article>
+
+          <div class="story-divider">↓</div>
+
+          <!-- 06 // TODAY (CLOSING CARD) -->
+          <article class="closing-card">
+            <div class="story-card-header" style="border-bottom-color: rgba(216, 168, 104, 0.2);">
+              <span class="story-index">// Present Day</span>
+              <span class="story-tagline">[ SRE · Cloud · DevOps ]</span>
+            </div>
+            <p class="closing-quote">
+              Today, I operate at the intersection of low-level systems, cloud infrastructure, and automation—turning complex, unpredictable failure modes into simpler, self-healing systems.
+            </p>
+            <div class="closing-punchline">
+              “I've spent most of my life operating in environments where uncertainty was the only constant. Engineering turned out to be another one.”
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================== -->
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <span style="color: var(--text-dim);">Built for uncertainty.</span>
+          </div>
+          <div class="footer-contact-prompt">
+            Have a system to build, debug or automate? <a onclick="openContactCard()">Let's talk →</a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="https://github.com/danoguer" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/daniel-nogueras/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:danoguer.dev@gmail.com">Email</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Daniel Nogueras Del Río
+      </div>
+    </div>
+  </footer>
+
+  <!-- =======================================================
+        CONTACT CARD OVERLAY (MODAL)
+        ======================================================== -->
+
+  <div id="contactOverlay" class="contact-card-overlay" onclick="handleOverlayClick(event)">
+    <div class="contact-card">
+      <div class="contact-card-header">
+        <div class="contact-card-title">// Contact Form</div>
+        <button type="button" class="contact-card-close" onclick="closeContactCard()" aria-label="Close">&times;</button>
+      </div>
+
+      <p class="contact-intro">
+        Have a system to build, debug or automate?
+      </p>
+
+      <form
+        id="contactForm"
+        class="contact-form"
+        onsubmit="submitContactForm(event)"
+      >
+        <div class="contact-row">
+          <input
+            type="text"
+            id="contactName"
+            required
+            placeholder="name"
+            autocomplete="name"
+          >
+          <input
+            type="email"
+            id="contactEmail"
+            required
+            placeholder="email"
+            autocomplete="email"
+          >
+        </div>
+
+        <textarea
+          id="contactMessage"
+          rows="3"
+          required
+          placeholder="message..."
+        ></textarea>
+
+        <button
+          type="submit"
+          id="submitBtn"
+          class="contact-submit"
+        >
+          Send message →
+        </button>
+
+        <div
+          id="formStatus"
+          class="form-status"
+          aria-live="polite"
+        ></div>
+      </form>
+    </div>
   </div>
-</header>
 
-<div class="wrap">
-  <section class="hero">
-    <a href="index.html" class="back-link">← back to main terminal</a>
-    <h1>Daniel Nogueras del Río</h1>
-    <div class="tagline">// Built for uncertainty</div>
-  </section>
+  <!-- =======================================================
+        JAVASCRIPT
+        ======================================================== -->
 
-  <!-- 01 // PERSPECTIVE -->
-  <section>
-    <div class="sec-head">
-      <h2>// perspective</h2>
-    </div>
-    <p>
-      My path into engineering wasn't linear. For a decade, I competed in environments where making fast decisions under pressure was a daily requirement. That mindset naturally drew me toward systems engineering: understanding how things work under the hood, finding where they break, and building them to be resilient.
-    </p>
-  </section>
+  <script>
+    /* =========================================================
+       CONTACT CARD MODAL LOGIC
+       ======================================================== */
 
-  <div class="flow-arrow">↓</div>
+    function openContactCard() {
+      const overlay = document.getElementById("contactOverlay");
+      if (overlay) {
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+    }
 
-  <!-- 02 // LEAGUE OF LEGENDS -->
-  <section>
-    <div class="sec-head">
-      <h2>// league_of_legends</h2>
-    </div>
-    <figure class="img-container">
-      <img src="../images/eledion.png" alt="Daniel Nogueras del Río - League of Legends Competition" class="img-side" loading="lazy">
-      <figcaption class="img-caption">// post LLN match</figcaption>
-    </figure>
-    <p>
-      For five years, I competed professionally in <em>League of Legends</em> as <em>eledion</em> across LLN (Latin America) and Superliga (Spain). It required relentless match analysis and real-time execution under incomplete information.
-    </p>
-    <p>
-      Competing at the top level taught me to evaluate decision quality over short-term outcomes, while sharpening concise team communication under high pressure and constant change. It laid the foundation for dissecting complex failure modes with structured analysis.
-    </p>
-  </section>
+    function closeContactCard() {
+      const overlay = document.getElementById("contactOverlay");
+      if (overlay) {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    }
 
-  <div class="flow-arrow">↓</div>
+    function handleOverlayClick(event) {
+      const overlay = document.getElementById("contactOverlay");
+      if (event.target === overlay) {
+        closeContactCard();
+      }
+    }
 
-  <!-- 03 // POKER -->
-  <section>
-    <div class="sec-head">
-      <h2>// poker</h2>
-    </div>
-    <p>
-      Poker brought a different kind of competition: solo, probability-driven, and centered on strict risk management under incomplete data. It reinforced a core principle: <strong>a good decision doesn't always yield a good short-term outcome, and a bad outcome doesn't mean the decision was wrong.</strong>
-    </p>
-  </section>
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeContactCard();
+      }
+    });
 
-  <div class="flow-arrow">↓</div>
+    /* =========================================================
+       CONTACT FORM SUBMISSION
+       ======================================================== */
 
-  <!-- 04 // 42 SCHOOL -->
-  <section>
-    <div class="sec-head">
-      <h2>// 42_school</h2>
-    </div>
-    <figure class="img-container">
-      <img src="../images/piscine.png" alt="Daniel Nogueras del Río - 42 Madrid Piscine" class="img-side" loading="lazy">
-      <figcaption class="img-caption">// 42 madrid piscine</figcaption>
-    </figure>
-    <p>
-      I entered <strong>42 School</strong> through <em>the Piscine</em>—a 26-day immersion bootcamp with zero lectures or manuals, spending 14-hour days debugging C scripts and peer-evaluating code in terminal environments.
-    </p>
-    <p>
-      Moving into the main curriculum meant working directly with low-level primitives: <strong>processes, memory allocation, signals, thread concurrency, sockets, and protocol handling</strong>. It built a hands-on mental model of how operating systems and networks behave when things break.
-    </p>
-  </section>
+    async function submitContactForm(event) {
+      event.preventDefault();
 
-  <div class="flow-arrow">↓</div>
+      const lambdaUrl = "https://oxb7daqokb4wht4mimykebz5ty0vekqw.lambda-url.eu-west-1.on.aws/";
+      const submitBtn = document.getElementById("submitBtn");
+      const statusDiv = document.getElementById("formStatus");
 
-  <!-- 05 // DEVOPS & CLOUD -->
-  <section>
-    <div class="sec-head">
-      <h2>// devops_cloud</h2>
-    </div>
-    <p>
-      That low-level foundation naturally led me to infrastructure. I became fascinated with how systems surrounding applications are provisioned, monitored, scaled, and recovered—bringing the same low-level rigor to cloud architecture, operational resilience, and automated environments.
-    </p>
-  </section>
+      const payload = {
+        name: document.getElementById("contactName").value,
+        email: document.getElementById("contactEmail").value,
+        message: document.getElementById("contactMessage").value
+      };
 
-  <div class="flow-arrow">↓</div>
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Transmitting...";
+      statusDiv.innerText = "";
+      statusDiv.className = "form-status";
 
-  <!-- 06 // TODAY -->
-  <section class="closing-block">
-    <div class="sec-head">
-      <h2>// today</h2>
-    </div>
-    <p>
-      Today, I work at the intersection of systems, infrastructure, and cloud—turning complex failure modes into simpler, more reliable systems.
-    </p>
-    <div class="closing-punchline">
-      I've spent most of my life operating in environments where uncertainty was the only constant. Engineering turned out to be another one.
-    </div>
-  </section>
-</div>
+      try {
+        const response = await fetch(lambdaUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
 
-<footer>
-  <div class="wrap">
-    <p>// Cloud & DevOps Engineer</p>
-    <div class="links">
-      <a href="https://github.com/danoguer" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/daniel-nogueras/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      </a>
-      <a href="mailto:danoguer.dev@gmail.com" aria-label="Email">
-        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.279 24 3.434 24 5.457z"/></svg>
-      </a>
-    </div>
-  </div>
-</footer>
+        if (response.ok) {
+          statusDiv.innerText = "> Payload transmitted successfully. I will be in touch.";
+          statusDiv.classList.add("success");
+          document.getElementById("contactForm").reset();
+        } else {
+          throw new Error("Transmission failed.");
+        }
+      } catch (error) {
+        statusDiv.innerText = "> Transmission error. Please email directly to danoguer.dev@gmail.com";
+        statusDiv.classList.add("error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Send message →";
+      }
+    }
+  </script>
 
 </body>
 </html>

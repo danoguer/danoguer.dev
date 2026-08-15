@@ -2,6 +2,15 @@ provider "aws" {
   region = var.aws_region
 }
 
+locals {
+  mime_types = {
+    "html" = "text/html"
+    "png"  = "image/png"
+    "jpg"  = "image/jpeg"
+    "jpeg" = "image/jpeg"
+  }
+}
+
 resource "aws_s3_bucket" "mybucket" {
   bucket        = "danoguerportfolio"
   force_destroy = true
@@ -16,13 +25,30 @@ resource "aws_s3_bucket_public_access_block" "mybucket" {
   restrict_public_buckets = true
 }
 
-resource "aws_s3_object" "object" {
-  bucket       = aws_s3_bucket.mybucket.id
-  key          = "index.html"
-  source       = "${path.module}/../../src/index.html"
-  content_type = "text/html"
+resource "aws_s3_object" "html_files" {
+  for_each = fileset("${path.module}/../../src", "*.html")
 
-  etag = filemd5("${path.module}/../../src/index.html")
+  bucket       = aws_s3_bucket.mybucket.id
+  key          = each.value
+  source       = "${path.module}/../../src/${each.value}"
+  content_type = "text/html"
+  etag         = filemd5("${path.module}/../../src/${each.value}")
+}
+
+resource "aws_s3_object" "image_files" {
+  for_each = fileset("${path.module}/../../images", "**/*.{png,jpg,jpeg}")
+
+  bucket = aws_s3_bucket.mybucket.id
+  key    = "images/${each.value}"
+  source = "${path.module}/../../images/${each.value}"
+
+  content_type = lookup(
+    local.mime_types,
+    lower(element(split(".", each.value), length(split(".", each.value)) - 1)),
+    "application/octet-stream"
+  )
+
+  etag = filemd5("${path.module}/../../images/${each.value}")
 }
 
 data "aws_iam_policy_document" "mys3policy" {

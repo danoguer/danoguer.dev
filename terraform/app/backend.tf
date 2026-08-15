@@ -3,7 +3,7 @@ terraform {
     bucket         = "danoguer-dev-tfstate-portfolio-bucket"
     key            = "app/terraform.tfstate"
     region         = "eu-south-2"
-    dynamodb_table = "danoguer-dev-tfstate-locks"
+    use_lockfile   = true
     encrypt        = true
   }
 }

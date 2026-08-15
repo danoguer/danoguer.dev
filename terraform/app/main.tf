@@ -36,11 +36,11 @@ resource "aws_s3_object" "html_files" {
 }
 
 resource "aws_s3_object" "image_files" {
-  for_each = fileset("${path.module}/../../images", "**/*.{png,jpg,jpeg}")
+  for_each = fileset("${path.module}/../../src/images", "**/*.{png,jpg,jpeg}")
 
   bucket = aws_s3_bucket.mybucket.id
   key    = "images/${each.value}"
-  source = "${path.module}/../../images/${each.value}"
+  source = "${path.module}/../../src/images/${each.value}"
 
   content_type = lookup(
     local.mime_types,
@@ -48,7 +48,7 @@ resource "aws_s3_object" "image_files" {
     "application/octet-stream"
   )
 
-  etag = filemd5("${path.module}/../../images/${each.value}")
+  etag = filemd5("${path.module}/../../src/images/${each.value}")
 }
 
 data "aws_iam_policy_document" "mys3policy" {
@@ -96,6 +96,10 @@ resource "aws_cloudfront_distribution" "cdn" {
     origin_id                = "S3-miportfolio"
     origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
   }
+  depends_on = [
+    aws_s3_bucket.mybucket,
+    aws_cloudfront_origin_access_control.oac
+  ]
 
   default_cache_behavior {
     target_origin_id       = "S3-miportfolio"

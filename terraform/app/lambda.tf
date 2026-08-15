@@ -60,6 +60,7 @@ resource "aws_lambda_function" "contact_lambda" {
   runtime          = "provided.al2023"
   architectures    = ["arm64"]
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
+  timeout          = 10
 
   environment {
     variables = {

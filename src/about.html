@@ -10,15 +10,31 @@
     content="My journey through professional competition, low-level systems at 42 School, and Cloud Infrastructure."
   >
 
-  <!-- Open Graph -->
+  <!-- Open Graph / WhatsApp / Telegram / LinkedIn / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://danoguer.dev/about.html">
+  <meta property="og:site_name" content="Daniel Nogueras Del Río Portfolio">
+  <meta property="og:url" content="https://danoguer.me/about.html">
   <meta property="og:title" content="About — Daniel Nogueras Del Río">
   <meta
     property="og:description"
     content="My journey through professional competition, low-level systems at 42 School, and Cloud Infrastructure."
   >
-  <meta property="og:image" content="https://danoguer.dev/og-image.jpg">
+  <meta property="og:image" content="https://danoguer.me/images/og-image.png">
+  <meta property="og:image:secure_url" content="https://danoguer.me/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="About — Daniel Nogueras Del Río">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://danoguer.me/about.html">
+  <meta name="twitter:title" content="About — Daniel Nogueras Del Río">
+  <meta
+    name="twitter:description"
+    content="My journey through professional competition, low-level systems at 42 School, and Cloud Infrastructure."
+  >
+  <meta name="twitter:image" content="https://danoguer.me/images/og-image.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +43,10 @@
     href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@700;800&family=Space+Grotesk:wght@600;700&display=swap"
     rel="stylesheet"
   >
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="images/favicon.png">
 
   <style>
     /* =========================================================
@@ -138,6 +158,7 @@
       height: 100%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 16px;
     }
 
@@ -145,27 +166,9 @@
       display: none;
     }
 
-    .brand {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.2s var(--ease);
-    }
-
-    .brand b {
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .brand:hover {
-      color: var(--text);
-    }
-
     nav {
       display: flex;
       gap: 24px;
-      margin-left: auto;
       font-family: var(--mono);
       font-size: 13px;
       color: var(--text-dim);
@@ -193,6 +196,7 @@
       color: var(--gold);
       font-family: var(--mono);
       font-size: 11px;
+      margin-left: auto;
     }
 
     .status-dot {
@@ -281,7 +285,7 @@
     }
 
     /* =========================================================
-       EDITORIAL STORY TIMELINE (MATCHING HERO LIGHTING)
+       EDITORIAL STORY TIMELINE
        ========================================================= */
 
     .story-section {
@@ -291,7 +295,6 @@
       border-bottom: 1px solid var(--line);
     }
 
-    /* Misma iluminación radial y lineal del Hero */
     .story-section::before {
       content: "";
       position: absolute;
@@ -401,7 +404,6 @@
       font-weight: 600;
     }
 
-    /* STORY FIGURE & PHOTO */
     .story-figure {
       float: right;
       width: 370px;
@@ -452,7 +454,6 @@
       margin: -12px 0;
     }
 
-    /* CLOSING BANNER (CLEAN, NO BOTTOM BOX SHADOW) */
     .closing-card {
       background: var(--bg-raised);
       border: 1px solid var(--line);
@@ -740,15 +741,12 @@
       }
 
       nav {
-        display: none;
-      }
-
-      .status-pill {
-        margin-left: auto;
+        gap: 16px;
+        font-size: 12px;
       }
 
       .page-hero {
-        padding: 70px 0 60px;
+        padding: 110px 0 85px 18px;
       }
 
       .page-title {
@@ -797,10 +795,6 @@
 
   <header>
     <div class="wrap">
-      <a href="index.html" class="brand">
-        <b>danoguer</b>@portfolio:~/about$
-      </a>
-
       <nav>
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
@@ -1009,14 +1003,14 @@
       </div>
 
       <div class="footer-bottom">
-        © 2026 Daniel Nogueras Del Río
+        &copy; 2026 Daniel Nogueras Del Río
       </div>
     </div>
   </footer>
 
   <!-- =======================================================
-        CONTACT CARD OVERLAY (MODAL)
-        ======================================================== -->
+       CONTACT CARD OVERLAY (MODAL)
+       ======================================================== -->
 
   <div id="contactOverlay" class="contact-card-overlay" onclick="handleOverlayClick(event)">
     <div class="contact-card">
@@ -1076,8 +1070,8 @@
   </div>
 
   <!-- =======================================================
-        JAVASCRIPT
-        ======================================================== -->
+       JAVASCRIPT
+       ======================================================== -->
 
   <script>
     /* =========================================================
@@ -1120,7 +1114,7 @@
     async function submitContactForm(event) {
       event.preventDefault();
 
-      const lambdaUrl = "https://oxb7daqokb4wht4mimykebz5ty0vekqw.lambda-url.eu-west-1.on.aws/";
+      const lambdaUrl = "https://ewifkwwcdg6vpunx2rn5hrojti0napqh.lambda-url.eu-west-1.on.aws/";
       const submitBtn = document.getElementById("submitBtn");
       const statusDiv = document.getElementById("formStatus");
 

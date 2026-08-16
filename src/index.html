@@ -10,12 +10,25 @@
     content="Cloud & DevOps Engineer. Building predictable infrastructure for uncertain systems."
   >
 
-  <!-- Open Graph -->
+  <!-- Open Graph / WhatsApp / Telegram / LinkedIn / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://danoguer.dev/">
-  <meta property="og:title" content="Daniel Nogueras Del Río — Cloud & DevOps Engineer">
-  <meta property="og:description" content="Built for uncertainty.">
-  <meta property="og:image" content="https://danoguer.dev/og-image.jpg">
+  <meta property="og:site_name" content="Daniel Nogueras Del Río Portfolio">
+  <meta property="og:url" content="https://danoguer.me/">
+  <meta property="og:title" content="Daniel Nogueras Del Río — Cloud &amp; DevOps Engineer">
+  <meta property="og:description" content="Building predictable infrastructure for uncertain systems. Cloud, DevOps &amp; SRE.">
+  <meta property="og:image" content="https://danoguer.me/images/og-image.png">
+  <meta property="og:image:secure_url" content="https://danoguer.me/images/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Daniel Nogueras Del Río — Cloud &amp; DevOps Engineer Portfolio Preview">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://danoguer.me/">
+  <meta name="twitter:title" content="Daniel Nogueras Del Río — Cloud &amp; DevOps Engineer">
+  <meta name="twitter:description" content="Building predictable infrastructure for uncertain systems. Cloud, DevOps &amp; SRE.">
+  <meta name="twitter:image" content="https://danoguer.me/images/og-image.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +38,10 @@
     rel="stylesheet"
   >
 
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="images/favicon.png">
   <style>
+  
     /* =========================================================
        DESIGN SYSTEM (WARM BRONZE & GOLD THEME)
        ========================================================= */
@@ -152,6 +168,7 @@
       height: 100%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 16px;
     }
 
@@ -159,27 +176,9 @@
       display: none;
     }
 
-    .brand {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--text-dim);
-      text-decoration: none;
-      transition: color 0.2s var(--ease);
-    }
-
-    .brand b {
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .brand:hover {
-      color: var(--text);
-    }
-
     nav {
       display: flex;
       gap: 24px;
-      margin-left: auto;
       font-family: var(--mono);
       font-size: 13px;
       color: var(--text-dim);
@@ -207,6 +206,7 @@
       color: var(--gold);
       font-family: var(--mono);
       font-size: 11px;
+      margin-left: auto;
     }
 
     .status-dot {
@@ -1324,36 +1324,41 @@
       }
 
       nav {
-        display: none;
-      }
-
-      .status-pill {
-        margin-left: auto;
+        gap: 16px;
+        font-size: 12px;
       }
 
       .hero {
         min-height: calc(100svh - var(--header-height));
-        padding: 28px 16px 20px;
+        padding: 40px 16px 24px;
       }
 
       .hero-content {
-        transform: translateY(-200px);
+        transform: translateY(-90px);
+        gap: 16px;
       }
 
       .hero h1 {
-        font-size: 30px;
+        font-size: 32px;
       }
 
       .hero-lead {
-        font-size: 14px;
+        font-size: 12.5px;
+        max-width: 330px;
       }
 
       .hero-nav {
-        gap: 14px;
+        gap: 12px;
+        top: 180px;
       }
 
       .system-meta {
-        gap: 8px;
+        gap: 16px;
+      }
+
+      .hero-nav a {
+        font-size: 10.5px;
+        letter-spacing: 0.1em;
       }
 
       .section,
@@ -1436,16 +1441,27 @@
 
     @media (max-width: 480px) {
       .hero {
-        padding-left: 12px;
-        padding-right: 12px;
+        padding: 30px 12px 20px;
+      }
+
+      .hero-content {
+        transform: translateY(-70px);
       }
 
       .hero h1 {
-        font-size: 26px;
+        font-size: 28px;
+      }
+
+      .hero-nav a {
+        font-size: 10.5px;
+      }
+
+      .hero-nav {
+        top: 150px;
       }
 
       .system-meta {
-        gap: 6px;
+        gap: 16px;
       }
 
       .project-inner {
@@ -1479,10 +1495,6 @@
 
   <header>
     <div class="wrap">
-      <a href="index.html" class="brand">
-        <b>danoguer</b>@portfolio:~$
-      </a>
-
       <nav>
         <a href="index.html" class="active">Home</a>
         <a href="projects.html">Projects</a>
@@ -1581,8 +1593,6 @@
       <div class="system-meta" id="system-meta">
         <span class="meta-item">42 School</span>
         <span class="meta-divider">◆</span>
-        <span class="meta-item">Cloud · DevOps · Systems</span>
-        <span class="meta-divider">◆</span>
         <span class="meta-item">AWS · Go · Linux · Terraform</span>
         <span class="meta-divider">◆</span>
         <span class="meta-item">ES / EU</span>
@@ -1601,7 +1611,7 @@
             // Background
           </div>
           <div class="section-counter">
-            [ competition → foundations → infrastructure ]
+            [ competition → foundations → infra ]
           </div>
         </div>
 
@@ -1682,8 +1692,8 @@
         <div class="featured-projects">
 
           <!-- ===============================================
-               SENTINEL
-               =============================================== -->
+                SENTINEL
+                =============================================== -->
           <article class="project" id="sentinel">
             <div class="project-inner">
 
@@ -1804,8 +1814,8 @@
 
 
           <!-- ===============================================
-               CLOUDFORGE
-               =============================================== -->
+                CLOUDFORGE
+                =============================================== -->
           <article class="project" id="cloudforge">
             <div class="project-inner">
 
@@ -2205,7 +2215,7 @@
     async function submitContactForm(event) {
       event.preventDefault();
 
-      const lambdaUrl = "https://oxb7daqokb4wht4mimykebz5ty0vekqw.lambda-url.eu-west-1.on.aws/";
+      const lambdaUrl = "https://ewifkwwcdg6vpunx2rn5hrojti0napqh.lambda-url.eu-west-1.on.aws/";
       const submitBtn = document.getElementById("submitBtn");
       const statusDiv = document.getElementById("formStatus");
 

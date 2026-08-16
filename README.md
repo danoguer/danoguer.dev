@@ -5,6 +5,7 @@
 [![Live Site](https://img.shields.io/badge/live-danoguer.me-2ea44f?style=flat-square)](https://danoguer.me)
 [![Terraform](https://img.shields.io/badge/IaC-Terraform-844FBA?style=flat-square&logo=terraform)](https://www.terraform.io/)
 [![AWS](https://img.shields.io/badge/Cloud-AWS-FF9900?style=flat-square&logo=amazon-aws)](https://aws.amazon.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
 **🌐 Live Site:** [https://danoguer.me](https://danoguer.me)
 
@@ -95,6 +96,12 @@ terraform apply
 ```
 
 CI/CD is handled by GitHub Actions via OIDC — pushes to `main` trigger a plan/apply pipeline with no static AWS credentials stored in the repository.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 

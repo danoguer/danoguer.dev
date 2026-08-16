@@ -92,15 +92,12 @@ resource "aws_cloudfront_distribution" "cdn" {
   default_root_object = "index.html"
 
   aliases = [var.domain_name]
+
   origin {
     domain_name              = aws_s3_bucket.mybucket.bucket_regional_domain_name
     origin_id                = "S3-miportfolio"
     origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
   }
-  depends_on = [
-    aws_s3_bucket.mybucket,
-    aws_cloudfront_origin_access_control.oac
-  ]
 
   default_cache_behavior {
     target_origin_id       = "S3-miportfolio"
@@ -122,4 +119,26 @@ resource "aws_cloudfront_distribution" "cdn" {
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2021"
   }
+
+  depends_on = [
+    aws_s3_bucket.mybucket,
+    aws_cloudfront_origin_access_control.oac
+  ]
+}
+
+resource "terraform_data" "cloudfront_invalidation" {
+  triggers_replace = [
+    join(",", [for obj in aws_s3_object.html_files : obj.etag]),
+    join(",", [for obj in aws_s3_object.image_files : obj.etag])
+  ]
+
+  provisioner "local-exec" {
+    command = "aws cloudfront create-invalidation --distribution-id ${aws_cloudfront_distribution.cdn.id} --paths '/*'"
+  }
+
+  depends_on = [
+    aws_s3_object.html_files,
+    aws_s3_object.image_files,
+    aws_cloudfront_distribution.cdn
+  ]
 }

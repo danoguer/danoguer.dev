@@ -3,7 +3,7 @@
 > Production-grade, fully automated serverless portfolio hosted on AWS and provisioned strictly via Infrastructure as Code (Terraform).
 
 
-** Live Site:** [https://danoguer.me](https://danoguer.me)
+**Live Site:** [https://danoguer.me](https://danoguer.me)
 
 ---
 

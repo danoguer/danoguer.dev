@@ -2,16 +2,12 @@
 
 > Production-grade, fully automated serverless portfolio hosted on AWS and provisioned strictly via Infrastructure as Code (Terraform).
 
-[![Live Site](https://img.shields.io/badge/live-danoguer.me-2ea44f?style=flat-square)](https://danoguer.me)
-[![Terraform](https://img.shields.io/badge/IaC-Terraform-844FBA?style=flat-square&logo=terraform)](https://www.terraform.io/)
-[![AWS](https://img.shields.io/badge/Cloud-AWS-FF9900?style=flat-square&logo=amazon-aws)](https://aws.amazon.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-**🌐 Live Site:** [https://danoguer.me](https://danoguer.me)
+** Live Site:** [https://danoguer.me](https://danoguer.me)
 
 ---
 
-## 🏗️ Architecture Overview
+##  Architecture Overview
 
 The system is designed around immutable deployments, zero long-lived credentials, edge security, and serverless compute.
 
@@ -43,7 +39,7 @@ The system is designed around immutable deployments, zero long-lived credentials
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Domain | Technologies |
 |---|---|
@@ -54,7 +50,7 @@ The system is designed around immutable deployments, zero long-lived credentials
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```text
 .
@@ -75,7 +71,7 @@ The system is designed around immutable deployments, zero long-lived credentials
 
 ---
 
-## 🚀 Deployment
+##  Deployment
 
 ### Prerequisites
 
@@ -99,13 +95,13 @@ CI/CD is handled by GitHub Actions via OIDC — pushes to `main` trigger a plan/
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 👤 Author
+##  Author
 
 **Daniel Nogueras Del Río**
 

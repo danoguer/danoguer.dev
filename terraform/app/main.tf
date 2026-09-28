@@ -9,6 +9,7 @@ locals {
     "jpg"  = "image/jpeg"
     "jpeg" = "image/jpeg"
     "svg"  = "image/svg+xml"
+    "pdf"  = "application/pdf"
   }
 }
 
@@ -45,7 +46,7 @@ resource "aws_s3_object" "image_files" {
 
   content_type = lookup(
     local.mime_types,
-    lower(element(split(".", each.value), length(split(".", each.value)) - 1)),
+    regex("\\.([0-9A-Za-z]+)$", each.value)[0],
     "application/octet-stream"
   )
 

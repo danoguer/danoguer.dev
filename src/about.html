@@ -184,6 +184,52 @@
       color: var(--gold);
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    /* CV BUTTON HEADER */
+    .cv-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 12px;
+      border: 1px solid rgba(216, 168, 104, 0.3);
+      border-radius: 999px;
+      background: rgba(15, 15, 18, 0.9);
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .cv-btn-pill:hover {
+      border-color: var(--gold);
+      color: var(--gold-hover);
+      background: var(--gold-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    .cv-btn-pill svg {
+      width: 12px;
+      height: 12px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: block;
+      opacity: 0.9;
+    }
+
     .status-pill {
       display: flex;
       align-items: center;
@@ -195,7 +241,6 @@
       color: var(--gold);
       font-family: var(--mono);
       font-size: 11px;
-      margin-left: auto;
     }
 
     .status-dot {
@@ -501,6 +546,70 @@
     }
 
     /* =========================================================
+       CV MODAL OVERLAY
+       ========================================================= */
+
+    .cv-modal-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--line-light);
+      border-radius: 10px;
+      padding: 28px 26px;
+      width: min(100%, 390px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 24px var(--gold-glow);
+      position: relative;
+      animation: modalScaleUp 0.25s var(--ease) forwards;
+    }
+
+    .cv-modal-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .cv-option-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
+      font-family: var(--mono);
+    }
+
+    .cv-option-btn:hover {
+      border-color: var(--gold);
+      background: var(--gold-soft);
+      transform: translateX(3px);
+    }
+
+    .cv-option-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+
+    .cv-option-title {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .cv-option-sub {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    .cv-option-arrow {
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    /* =========================================================
        CONTACT CARD OVERLAY (MODAL)
        ========================================================= */
 
@@ -713,20 +822,29 @@
 
     .footer-links {
       display: flex;
-      gap: 28px;
+      gap: 24px;
       color: var(--text);
       font-family: var(--mono);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
       align-self: center;
+      flex-wrap: wrap;
     }
 
-    .footer-links a {
+    .footer-links a,
+    .footer-links button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
       text-decoration: none;
       transition: color 0.2s var(--ease);
     }
 
-    .footer-links a:hover {
+    .footer-links a:hover,
+    .footer-links button:hover {
       color: var(--gold);
     }
 
@@ -758,6 +876,10 @@
       nav {
         gap: 16px;
         font-size: 12px;
+      }
+
+      .header-actions {
+        gap: 8px;
       }
 
       .page-hero {
@@ -817,9 +939,23 @@
         <a onclick="openContactCard()">Contact</a>
       </nav>
 
-      <div class="status-pill">
-        <span class="status-dot"></span>
-        Open to work
+      <div class="header-actions">
+        <!-- SINGLE CLEAN CV BUTTON -->
+        <button type="button" class="cv-btn-pill" onclick="openCvModal()" aria-label="Open CV options">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <span>CV</span>
+        </button>
+
+        <!-- OPEN TO WORK STATUS -->
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          Open to work
+        </div>
       </div>
     </div>
   </header>
@@ -1020,6 +1156,7 @@
         </div>
 
         <div class="footer-links">
+          <button type="button" onclick="openCvModal()">CV</button>
           <a href="https://github.com/danoguer" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/daniel-nogueras/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="mailto:danoguer.dev@gmail.com">Email</a>
@@ -1033,8 +1170,39 @@
   </footer>
 
   <!-- =======================================================
-       CONTACT CARD OVERLAY (MODAL)
-       ======================================================== -->
+        CV SELECTION MODAL
+        ======================================================== -->
+
+  <div id="cvOverlay" class="contact-card-overlay" onclick="handleCvOverlayClick(event)">
+    <div class="cv-modal-card">
+      <div class="contact-card-header">
+        <div class="contact-card-title">// Select CV Language</div>
+        <button type="button" class="contact-card-close" onclick="closeCvModal()" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="cv-modal-options">
+        <a href="docs/CVEN.pdf" target="_blank" rel="noopener" class="cv-option-btn" onclick="closeCvModal()">
+          <div class="cv-option-info">
+            <span class="cv-option-title">English</span>
+            <span class="cv-option-sub">Cloud &amp; DevOps Engineer · PDF</span>
+          </div>
+          <span class="cv-option-arrow">↗</span>
+        </a>
+
+        <a href="docs/CVES.pdf" target="_blank" rel="noopener" class="cv-option-btn" onclick="closeCvModal()">
+          <div class="cv-option-info">
+            <span class="cv-option-title">Español</span>
+            <span class="cv-option-sub">Ingeniero Cloud &amp; DevOps · PDF</span>
+          </div>
+          <span class="cv-option-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================
+        CONTACT CARD OVERLAY (MODAL)
+        ======================================================== -->
 
   <div id="contactOverlay" class="contact-card-overlay" onclick="handleOverlayClick(event)">
     <div class="contact-card">
@@ -1094,14 +1262,35 @@
   </div>
 
   <!-- =======================================================
-       JAVASCRIPT
-       ======================================================== -->
+        JAVASCRIPT
+        ======================================================== -->
 
   <script>
-    /* =========================================================
-       CONTACT CARD MODAL LOGIC
-       ======================================================== */
+    /* CV MODAL LOGIC */
+    function openCvModal() {
+      const overlay = document.getElementById("cvOverlay");
+      if (overlay) {
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+    }
 
+    function closeCvModal() {
+      const overlay = document.getElementById("cvOverlay");
+      if (overlay) {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    }
+
+    function handleCvOverlayClick(event) {
+      const overlay = document.getElementById("cvOverlay");
+      if (event.target === overlay) {
+        closeCvModal();
+      }
+    }
+
+    /* CONTACT MODAL LOGIC */
     function openContactCard() {
       const overlay = document.getElementById("contactOverlay");
       if (overlay) {
@@ -1128,13 +1317,11 @@
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeContactCard();
+        closeCvModal();
       }
     });
 
-    /* =========================================================
-       CONTACT FORM SUBMISSION
-       ======================================================== */
-
+    /* CONTACT FORM SUBMISSION */
     async function submitContactForm(event) {
       event.preventDefault();
 

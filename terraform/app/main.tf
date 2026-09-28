@@ -8,6 +8,7 @@ locals {
     "png"  = "image/png"
     "jpg"  = "image/jpeg"
     "jpeg" = "image/jpeg"
+    "svg"  = "image/svg+xml"
   }
 }
 
@@ -36,7 +37,7 @@ resource "aws_s3_object" "html_files" {
 }
 
 resource "aws_s3_object" "image_files" {
-  for_each = fileset("${path.module}/../../src/images", "**/*.{png,jpg,jpeg}")
+  for_each = fileset("${path.module}/../../src/images", "**/*.{png,jpg,jpeg,svg}")
 
   bucket = aws_s3_bucket.mybucket.id
   key    = "images/${each.value}"
@@ -49,6 +50,16 @@ resource "aws_s3_object" "image_files" {
   )
 
   etag = filemd5("${path.module}/../../src/images/${each.value}")
+}
+
+resource "aws_s3_object" "doc_files" {
+  for_each = fileset("${path.module}/../../src/docs", "**/*.pdf")
+
+  bucket       = aws_s3_bucket.mybucket.id
+  key          = "docs/${each.value}"
+  source       = "${path.module}/../../src/docs/${each.value}"
+  content_type = "application/pdf"
+  etag         = filemd5("${path.module}/../../src/docs/${each.value}")
 }
 
 data "aws_iam_policy_document" "mys3policy" {
@@ -129,7 +140,8 @@ resource "aws_cloudfront_distribution" "cdn" {
 resource "terraform_data" "cloudfront_invalidation" {
   triggers_replace = [
     join(",", [for obj in aws_s3_object.html_files : obj.etag]),
-    join(",", [for obj in aws_s3_object.image_files : obj.etag])
+    join(",", [for obj in aws_s3_object.image_files : obj.etag]),
+    join(",", [for obj in aws_s3_object.doc_files : obj.etag])
   ]
 
   provisioner "local-exec" {
@@ -139,6 +151,7 @@ resource "terraform_data" "cloudfront_invalidation" {
   depends_on = [
     aws_s3_object.html_files,
     aws_s3_object.image_files,
+    aws_s3_object.doc_files,
     aws_cloudfront_distribution.cdn
   ]
 }

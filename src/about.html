@@ -403,6 +403,22 @@
       font-weight: 600;
     }
 
+    /* Verifiable credential link */
+    .cert-link {
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 12.5px;
+      white-space: nowrap;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(216, 168, 104, 0.5);
+      transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+
+    .cert-link:hover {
+      color: var(--gold-hover);
+      border-color: var(--gold-hover);
+    }
+
     .story-figure {
       float: right;
       width: 370px;
@@ -953,6 +969,15 @@
               <p>
                 Today I bring that same first-principles rigor to cloud architecture: building automated CI/CD pipelines, containerized environments, and declarative infrastructure that eliminate manual friction and failure points.
               </p>
+              <p>
+                That practice is now backed by the <strong>AWS Certified Solutions Architect – Associate</strong> certification, which gave me a structured way to design an architecture around a given problem, weighing resilience, security and cost.
+                <a
+                  class="cert-link"
+                  href="https://www.credly.com/badges/2edf2018-f4a1-4cdf-b56a-16af14dbb0e6/public_url"
+                  target="_blank"
+                  rel="noopener"
+                >Verify on Credly ↗</a>
+              </p>
             </div>
           </article>
 
@@ -962,7 +987,7 @@
           <article class="closing-card">
             <div class="story-card-header" style="border-bottom-color: rgba(216, 168, 104, 0.2);">
               <span class="story-index">// Present Day</span>
-              <span class="story-tagline">[ SRE · Cloud · DevOps ]</span>
+              <span class="story-tagline">[ Cloud · DevOps · Systems ]</span>
             </div>
             <p class="closing-quote">
               Today, I operate at the intersection of low-level systems, cloud infrastructure, and automation—turning complex, unpredictable failure modes into simpler, self-healing systems.

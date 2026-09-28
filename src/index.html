@@ -7,7 +7,7 @@
   <title>Daniel Nogueras Del Río — Cloud &amp; DevOps Engineer</title>
   <meta
     name="description"
-    content="Cloud & DevOps Engineer. Building predictable infrastructure for uncertain systems."
+    content="Cloud &amp; DevOps Engineer, AWS Certified Solutions Architect – Associate. Building predictable infrastructure for uncertain systems."
   >
 
   <!-- Open Graph / WhatsApp / Telegram / LinkedIn / Facebook -->
@@ -15,7 +15,7 @@
   <meta property="og:site_name" content="Daniel Nogueras Del Río Portfolio">
   <meta property="og:url" content="https://danoguer.me/">
   <meta property="og:title" content="Daniel Nogueras Del Río — Cloud &amp; DevOps Engineer">
-  <meta property="og:description" content="Building predictable infrastructure for uncertain systems. Cloud, DevOps &amp; SRE.">
+  <meta property="og:description" content="Building predictable infrastructure for uncertain systems. Cloud &amp; DevOps. AWS Certified Solutions Architect – Associate.">
   <meta property="og:image" content="https://danoguer.me/images/og-image.png">
   <meta property="og:image:secure_url" content="https://danoguer.me/images/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -27,7 +27,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://danoguer.me/">
   <meta name="twitter:title" content="Daniel Nogueras Del Río — Cloud &amp; DevOps Engineer">
-  <meta name="twitter:description" content="Building predictable infrastructure for uncertain systems. Cloud, DevOps &amp; SRE.">
+  <meta name="twitter:description" content="Building predictable infrastructure for uncertain systems. Cloud &amp; DevOps. AWS Certified Solutions Architect – Associate.">
   <meta name="twitter:image" content="https://danoguer.me/images/og-image.png">
 
   <!-- Fonts -->
@@ -41,7 +41,6 @@
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 
   <style>
-
     /* =========================================================
        DESIGN SYSTEM (WARM BRONZE & GOLD THEME)
        ========================================================= */
@@ -78,10 +77,6 @@
       --content-width: 1240px;
     }
 
-    /* =========================================================
-       RESET & BASE
-       ========================================================= */
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -108,10 +103,6 @@
     button, input, textarea {
       font: inherit;
     }
-
-    /* =========================================================
-       GLOBAL LAYOUT
-       ========================================================= */
 
     .wrap {
       width: min(100%, var(--content-width));
@@ -195,6 +186,52 @@
       color: var(--gold);
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    /* CV BUTTON HEADER */
+    .cv-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 12px;
+      border: 1px solid rgba(216, 168, 104, 0.3);
+      border-radius: 999px;
+      background: rgba(15, 15, 18, 0.9);
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .cv-btn-pill:hover {
+      border-color: var(--gold);
+      color: var(--gold-hover);
+      background: var(--gold-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    .cv-btn-pill svg {
+      width: 12px;
+      height: 12px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: block;
+      opacity: 0.9;
+    }
+
     .status-pill {
       display: flex;
       align-items: center;
@@ -206,7 +243,6 @@
       color: var(--gold);
       font-family: var(--mono);
       font-size: 11px;
-      margin-left: auto;
     }
 
     .status-dot {
@@ -342,7 +378,8 @@
       top: 300px;
     }
 
-    .hero-nav a {
+    .hero-nav a,
+    .hero-nav button {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -352,14 +389,29 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       text-decoration: none;
+      background: none;
+      border: none;
+      padding: 0;
       transition: color 0.2s var(--ease), transform 0.2s var(--ease);
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
       cursor: pointer;
     }
 
-    .hero-nav a:hover {
+    .hero-nav a:hover,
+    .hero-nav button:hover {
       color: var(--gold);
       transform: translateY(-2px);
+    }
+
+    /* Hero CV terminal-style trigger */
+    .hero-cv-btn {
+      color: var(--gold) !important;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+    }
+
+    .hero-cv-btn:hover {
+      color: var(--gold-hover) !important;
     }
 
     .hero-bg-scroll-link {
@@ -427,6 +479,18 @@
       display: inline-block;
       user-select: none;
       transform: scale(0.9);
+    }
+
+    .cert-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(216, 168, 104, 0.5);
+      transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+
+    .cert-link:hover {
+      color: var(--gold-hover);
+      border-color: var(--gold-hover);
     }
 
     /* =========================================================
@@ -564,6 +628,80 @@
       transform: translateX(4px);
     }
 
+    .cert-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      padding-left: 42px;
+    }
+
+    .cert-embed {
+      flex-shrink: 0;
+      width: 150px;
+      height: 270px;
+      line-height: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      background: transparent;
+      box-shadow:
+        0 0 0 1px rgba(216, 168, 104, 0.28),
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        0 0 24px var(--gold-soft);
+      transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+
+    .cert-embed:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 0 1px rgba(216, 168, 104, 0.55),
+        0 12px 34px rgba(0, 0, 0, 0.5),
+        0 0 28px var(--gold-glow);
+    }
+
+    .cert-embed > div,
+    .cert-embed iframe {
+      display: block;
+      width: 150px;
+      height: 270px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      max-width: 100%;
+    }
+
+    .cert-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 260px;
+    }
+
+    .cert-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .cert-name {
+      font-family: var(--tech);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .cert-meta .cert-link {
+      align-self: flex-start;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--gold);
+    }
+
     .about-panel {
       display: flex;
       background: var(--bg-raised);
@@ -619,7 +757,7 @@
     }
 
     /* =========================================================
-       SELECTED SYSTEMS (PRIMARY PROJECTS INTEGRATION)
+       SELECTED SYSTEMS
        ========================================================= */
 
     .projects-viewport {
@@ -660,7 +798,6 @@
       min-height: 500px;
     }
 
-    /* PROJECT VISUAL SIDE */
     .project-visual {
       position: relative;
       display: flex;
@@ -682,22 +819,10 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(
-          rgba(255,255,255,0.018) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,0.018) 1px,
-          transparent 1px
-        );
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
       background-size: 42px 42px;
-      mask-image:
-        linear-gradient(
-          to bottom,
-          black,
-          transparent
-        );
+      mask-image: linear-gradient(to bottom, black, transparent);
       pointer-events: none;
     }
 
@@ -752,7 +877,6 @@
       color: var(--text-dim);
     }
 
-    /* PROJECT INFORMATION */
     .project-content {
       display: flex;
       flex-direction: column;
@@ -786,7 +910,6 @@
       line-height: 1.65;
     }
 
-    /* INTERACTIVE PIPELINE ARCHITECTURE */
     .pipeline-container {
       background: var(--bg);
       border: 1px solid var(--line);
@@ -848,7 +971,6 @@
       margin-bottom: 3px;
     }
 
-    /* DECISIONS */
     .decisions {
       display: flex;
       flex-direction: column;
@@ -875,7 +997,6 @@
       font-weight: 500;
     }
 
-    /* PROJECT FOOTER */
     .project-footer {
       display: flex;
       justify-content: space-between;
@@ -933,7 +1054,7 @@
     }
 
     /* =========================================================
-       THIS SITE SECTION
+       THIS SITE
        ========================================================= */
 
     .site-section {
@@ -1057,7 +1178,7 @@
     }
 
     /* =========================================================
-       CONTACT CARD (EXPANDABLE MODAL / CARD OVERLAY)
+       CONTACT CARD OVERLAY (MODAL)
        ========================================================= */
 
     .contact-card-overlay {
@@ -1209,6 +1330,70 @@
     }
 
     /* =========================================================
+       CV MODAL OVERLAY
+       ========================================================= */
+
+    .cv-modal-card {
+      background: var(--bg-raised);
+      border: 1px solid var(--line-light);
+      border-radius: 10px;
+      padding: 28px 26px;
+      width: min(100%, 390px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 24px var(--gold-glow);
+      position: relative;
+      animation: modalScaleUp 0.25s var(--ease) forwards;
+    }
+
+    .cv-modal-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .cv-option-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s var(--ease);
+      font-family: var(--mono);
+    }
+
+    .cv-option-btn:hover {
+      border-color: var(--gold);
+      background: var(--gold-soft);
+      transform: translateX(3px);
+    }
+
+    .cv-option-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+
+    .cv-option-title {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .cv-option-sub {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    .cv-option-arrow {
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    /* =========================================================
        FOOTER
        ========================================================= */
 
@@ -1270,20 +1455,29 @@
 
     .footer-links {
       display: flex;
-      gap: 28px;
+      gap: 24px;
       color: var(--text);
       font-family: var(--mono);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
       align-self: center;
+      flex-wrap: wrap;
     }
 
-    .footer-links a {
+    .footer-links a,
+    .footer-links button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
       text-decoration: none;
       transition: color 0.2s var(--ease);
     }
 
-    .footer-links a:hover {
+    .footer-links a:hover,
+    .footer-links button:hover {
       color: var(--gold);
     }
 
@@ -1328,6 +1522,10 @@
         font-size: 12px;
       }
 
+      .header-actions {
+        gap: 8px;
+      }
+
       .hero {
         min-height: calc(100svh - var(--header-height));
         padding: 40px 16px 24px;
@@ -1356,7 +1554,8 @@
         gap: 16px;
       }
 
-      .hero-nav a {
+      .hero-nav a,
+      .hero-nav button {
         font-size: 10.5px;
         letter-spacing: 0.1em;
       }
@@ -1415,7 +1614,8 @@
         grid-template-columns: 1fr;
       }
 
-      .about-more {
+      .about-more,
+      .cert-block {
         padding-left: 0;
       }
 
@@ -1452,7 +1652,8 @@
         font-size: 28px;
       }
 
-      .hero-nav a {
+      .hero-nav a,
+      .hero-nav button {
         font-size: 10.5px;
       }
 
@@ -1502,9 +1703,23 @@
         <a onclick="openContactCard()">Contact</a>
       </nav>
 
-      <div class="status-pill">
-        <span class="status-dot"></span>
-        Open to work
+      <div class="header-actions">
+        <!-- SINGLE CLEAN CV BUTTON (NO ARROWS) -->
+        <button type="button" class="cv-btn-pill" onclick="openCvModal()" aria-label="Open CV options">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <span>CV</span>
+        </button>
+
+        <!-- OPEN TO WORK STATUS -->
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          Open to work
+        </div>
       </div>
     </div>
   </header>
@@ -1582,6 +1797,11 @@
             Contact
             <span>↓</span>
           </a>
+
+          <!-- CLEAN TERMINAL STYLE CV BUTTON (NO RESUME, NO ARROWS) -->
+          <button type="button" class="hero-cv-btn" onclick="openCvModal()">
+            [ CV ]
+          </button>
         </div>
       </div>
 
@@ -1593,7 +1813,9 @@
       <div class="system-meta" id="system-meta">
         <span class="meta-item">42 School</span>
         <span class="meta-divider">◆</span>
-        <span class="meta-item">AWS · Go · Linux · Terraform</span>
+        <span class="meta-item"><b><a class="cert-link" href="https://www.credly.com/badges/2edf2018-f4a1-4cdf-b56a-16af14dbb0e6/public_url" target="_blank" rel="noopener">AWS SAA-C03</a></b></span>
+        <span class="meta-divider">◆</span>
+        <span class="meta-item">Go · Linux · Terraform</span>
         <span class="meta-divider">◆</span>
         <span class="meta-item">ES / EU</span>
       </div>
@@ -1651,6 +1873,27 @@
                 <p>
                   Today I apply both perspectives to cloud and infrastructure engineering: building systems that are automated, reproducible, observable, and designed to remain predictable when things go wrong.
                 </p>
+              </div>
+            </div>
+
+            <!-- Verified credential (Credly embed) -->
+            <div class="cert-block">
+              <div class="cert-embed">
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="2edf2018-f4a1-4cdf-b56a-16af14dbb0e6" data-share-badge-host="https://www.credly.com"></div>
+                <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+              </div>
+
+              <div class="cert-meta">
+                <div class="cert-label">Verified credential</div>
+                <div class="cert-name">AWS Certified Solutions Architect – Associate</div>
+                <a
+                  class="cert-link"
+                  href="https://www.credly.com/badges/2edf2018-f4a1-4cdf-b56a-16af14dbb0e6/public_url"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Verify on Credly ↗
+                </a>
               </div>
             </div>
 
@@ -1811,7 +2054,6 @@
 
             </div>
           </article>
-
 
           <!-- ===============================================
                 CLOUDFORGE
@@ -2059,6 +2301,7 @@
             </div>
 
             <div class="footer-links">
+              <button type="button" onclick="openCvModal()">CV</button>
               <a href="https://github.com/danoguer" target="_blank" rel="noopener">GitHub</a>
               <a href="https://www.linkedin.com/in/daniel-nogueras/" target="_blank" rel="noopener">LinkedIn</a>
               <a href="mailto:danoguer.dev@gmail.com">Email</a>
@@ -2073,6 +2316,37 @@
 
     </div>
   </main>
+
+  <!-- =======================================================
+        CV SELECTION MODAL
+        ======================================================== -->
+
+  <div id="cvOverlay" class="contact-card-overlay" onclick="handleCvOverlayClick(event)">
+    <div class="cv-modal-card">
+      <div class="contact-card-header">
+        <div class="contact-card-title">// Select CV Language</div>
+        <button type="button" class="contact-card-close" onclick="closeCvModal()" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="cv-modal-options">
+        <a href="docs/CVEN.pdf" target="_blank" rel="noopener" class="cv-option-btn" onclick="closeCvModal()">
+          <div class="cv-option-info">
+            <span class="cv-option-title">English</span>
+            <span class="cv-option-sub">Cloud &amp; DevOps Engineer · PDF</span>
+          </div>
+          <span class="cv-option-arrow">↗</span>
+        </a>
+
+        <a href="docs/CVES.pdf" target="_blank" rel="noopener" class="cv-option-btn" onclick="closeCvModal()">
+          <div class="cv-option-info">
+            <span class="cv-option-title">Español</span>
+            <span class="cv-option-sub">Ingeniero Cloud &amp; DevOps · PDF</span>
+          </div>
+          <span class="cv-option-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- =======================================================
         CONTACT CARD OVERLAY (MODAL)
@@ -2140,10 +2414,6 @@
         ======================================================== -->
 
   <script>
-    /* =========================================================
-       PIPELINE INTERACTION DATA & HANDLER
-       ========================================================= */
-
     const pipelineData = {
       sentinel: [
         { title: "01 · Host Telemetry", desc: "Continuous scraping of Linux kernel metrics via Prometheus and structured system logs from journald as an immutable evidence layer." },
@@ -2175,10 +2445,31 @@
       }
     }
 
-    /* =========================================================
-       CONTACT CARD MODAL LOGIC
-       ======================================================== */
+    /* CV MODAL LOGIC */
+    function openCvModal() {
+      const overlay = document.getElementById("cvOverlay");
+      if (overlay) {
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+    }
 
+    function closeCvModal() {
+      const overlay = document.getElementById("cvOverlay");
+      if (overlay) {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    }
+
+    function handleCvOverlayClick(event) {
+      const overlay = document.getElementById("cvOverlay");
+      if (event.target === overlay) {
+        closeCvModal();
+      }
+    }
+
+    /* CONTACT MODAL LOGIC */
     function openContactCard() {
       const overlay = document.getElementById("contactOverlay");
       if (overlay) {
@@ -2205,12 +2496,9 @@
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeContactCard();
+        closeCvModal();
       }
     });
-
-    /* =========================================================
-       CONTACT FORM SUBMISSION
-       ======================================================== */
 
     async function submitContactForm(event) {
       event.preventDefault();

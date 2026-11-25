@@ -3,8 +3,13 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"net/mail"
 	"os"
+	"strings"
+	"unicode"
+	"unicode/utf8"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -20,6 +25,13 @@ type ContactRequest struct {
 	Message string `json:"message"`
 }
 
+const (
+	maxContactRequestBytes  = 20 * 1024
+	maxContactNameLength    = 100
+	maxContactEmailLength   = 254
+	maxContactMessageLength = 4000
+)
+
 var sesClient *ses.Client
 
 func init() {
@@ -27,20 +39,25 @@ func init() {
 	sesClient = ses.NewFromConfig(cfg)
 }
 
-func handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func handler(ctx context.Context, request events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
 	headers := map[string]string{
 		"Access-Control-Allow-Origin":  "*",
 		"Access-Control-Allow-Methods": "POST, OPTIONS",
 		"Access-Control-Allow-Headers": "Content-Type",
 	}
 
-	if request.HTTPMethod == "OPTIONS" {
-		return events.APIGatewayProxyResponse{StatusCode: 200, Headers: headers}, nil
+	if request.RequestContext.HTTP.Method == "OPTIONS" {
+		return events.LambdaFunctionURLResponse{StatusCode: 200, Headers: headers}, nil
 	}
 
-	var req ContactRequest
-	if err := json.Unmarshal([]byte(request.Body), &req); err != nil {
-		return events.APIGatewayProxyResponse{StatusCode: 400, Body: "Invalid request"}, nil
+	if request.RequestContext.HTTP.Method != "POST" {
+		headers["Allow"] = "POST, OPTIONS"
+		return events.LambdaFunctionURLResponse{StatusCode: 405, Headers: headers, Body: "Method not allowed"}, nil
+	}
+
+	req, err := parseContactRequest(request.Body)
+	if err != nil {
+		return events.LambdaFunctionURLResponse{StatusCode: 400, Headers: headers, Body: "Invalid request"}, nil
 	}
 
 	sender := os.Getenv("SENDER_EMAIL")
@@ -63,17 +80,56 @@ func handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		Source: aws.String(sender),
 	}
 
-	_, err := sesClient.SendEmail(ctx, input)
+	_, err = sesClient.SendEmail(ctx, input)
 	if err != nil {
 		fmt.Printf("Error enviando email con SES: %v\n", err)
-		return events.APIGatewayProxyResponse{StatusCode: 500, Body: "Error sending email", Headers: headers}, nil
+		return events.LambdaFunctionURLResponse{StatusCode: 500, Body: "Error sending email", Headers: headers}, nil
 	}
 
-	return events.APIGatewayProxyResponse{
+	return events.LambdaFunctionURLResponse{
 		StatusCode: 200,
 		Headers:    headers,
 		Body:       "Message sent successfully!",
 	}, nil
+}
+
+func parseContactRequest(body string) (ContactRequest, error) {
+	var req ContactRequest
+	if len(body) > maxContactRequestBytes {
+		return req, errors.New("request body too large")
+	}
+	if err := json.Unmarshal([]byte(body), &req); err != nil {
+		return req, errors.New("invalid JSON")
+	}
+
+	req.Name = strings.TrimSpace(req.Name)
+	req.Email = strings.TrimSpace(req.Email)
+	req.Message = strings.TrimSpace(req.Message)
+
+	if req.Name == "" || utf8.RuneCountInString(req.Name) > maxContactNameLength || hasControlCharacters(req.Name, false) {
+		return ContactRequest{}, errors.New("invalid name")
+	}
+	if len(req.Email) > maxContactEmailLength || hasControlCharacters(req.Email, false) {
+		return ContactRequest{}, errors.New("invalid email")
+	}
+	address, err := mail.ParseAddress(req.Email)
+	if err != nil || address.Address != req.Email {
+		return ContactRequest{}, errors.New("invalid email")
+	}
+	if req.Message == "" || utf8.RuneCountInString(req.Message) > maxContactMessageLength || hasControlCharacters(req.Message, true) {
+		return ContactRequest{}, errors.New("invalid message")
+	}
+
+	return req, nil
+}
+
+func hasControlCharacters(value string, allowWhitespace bool) bool {
+	for _, character := range value {
+		if unicode.IsControl(character) && !(allowWhitespace && (character == '\n' || character == '\r' || character == '\t')) {
+			return true
+		}
+	}
+	return false
 }
 
 func main() {

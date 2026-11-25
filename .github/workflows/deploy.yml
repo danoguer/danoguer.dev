@@ -18,9 +18,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Validate commits format
-      uses: wagoid/commitlint-github-action@v6
-
     - name: Install and execute HTMLHint
       run: |
         npm install -g htmlhint

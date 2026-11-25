@@ -4,6 +4,13 @@ data "archive_file" "lambda_zip" {
   output_path = "${path.module}/../../lambda/function.zip"
 }
 
+data "aws_caller_identity" "current" {}
+
+locals {
+  contact_lambda_name = "${var.project_name}-contact-backend"
+  contact_log_group   = "/aws/lambda/${local.contact_lambda_name}"
+}
+
 resource "aws_iam_role" "lambda_exec_role" {
   name = "${var.project_name}-contact-lambda-role"
 
@@ -27,21 +34,17 @@ resource "aws_iam_policy" "lambda_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Effect = "Allow"
-        Action = [
-          "ses:SendEmail",
-          "ses:SendRawEmail"
-        ]
-        Resource = "*"
+        Effect   = "Allow"
+        Action   = "ses:SendEmail"
+        Resource = "arn:aws:ses:eu-west-1:${data.aws_caller_identity.current.account_id}:identity/danoguer.dev@gmail.com"
       },
       {
         Effect = "Allow"
         Action = [
-          "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ]
-        Resource = "arn:aws:logs:*:*:*"
+        Resource = "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:${local.contact_log_group}:log-stream:*"
       }
     ]
   })
@@ -52,9 +55,13 @@ resource "aws_iam_role_policy_attachment" "lambda_policy_attach" {
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
 
+resource "aws_cloudwatch_log_group" "contact_lambda" {
+  name = local.contact_log_group
+}
+
 resource "aws_lambda_function" "contact_lambda" {
   filename         = data.archive_file.lambda_zip.output_path
-  function_name    = "${var.project_name}-contact-backend"
+  function_name    = local.contact_lambda_name
   role             = aws_iam_role.lambda_exec_role.arn
   handler          = "bootstrap"
   runtime          = "provided.al2023"

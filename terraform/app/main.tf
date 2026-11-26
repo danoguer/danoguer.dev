@@ -118,6 +118,12 @@ resource "aws_cloudfront_distribution" "cdn" {
     viewer_protocol_policy = "redirect-to-https"
 
     cache_policy_id = data.aws_cloudfront_cache_policy.optimized.id
+
+    lambda_function_association {
+      event_type   = "viewer-response"
+      lambda_arn   = aws_lambda_function.edge_security_headers.qualified_arn
+      include_body = false
+    }
   }
 
   restrictions {
@@ -134,7 +140,8 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   depends_on = [
     aws_s3_bucket.mybucket,
-    aws_cloudfront_origin_access_control.oac
+    aws_cloudfront_origin_access_control.oac,
+    aws_lambda_permission.edge_security_headers_cloudfront
   ]
 }
 

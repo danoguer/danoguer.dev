@@ -28,7 +28,7 @@ resource "aws_iam_role" "lambda_exec_role" {
 
 resource "aws_iam_policy" "lambda_policy" {
   name        = "${var.project_name}-contact-lambda-policy"
-  description = "Allows Lambda to send emails via SES and write CloudWatch logs"
+  description = "Allows Lambda to send emails via SES, write CloudWatch logs, and update contact rate limits"
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -45,6 +45,11 @@ resource "aws_iam_policy" "lambda_policy" {
           "logs:PutLogEvents"
         ]
         Resource = "arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:log-group:${local.contact_log_group}:log-stream:*"
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["dynamodb:UpdateItem"]
+        Resource = aws_dynamodb_table.contact_rate_limit.arn
       }
     ]
   })
@@ -59,6 +64,22 @@ resource "aws_cloudwatch_log_group" "contact_lambda" {
   name = local.contact_log_group
 }
 
+resource "aws_dynamodb_table" "contact_rate_limit" {
+  name         = "${var.project_name}-contact-rate-limit"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "rate_limit_key"
+
+  attribute {
+    name = "rate_limit_key"
+    type = "S"
+  }
+
+  ttl {
+    attribute_name = "expires_at"
+    enabled        = true
+  }
+}
+
 resource "aws_lambda_function" "contact_lambda" {
   filename         = data.archive_file.lambda_zip.output_path
   function_name    = local.contact_lambda_name
@@ -71,7 +92,8 @@ resource "aws_lambda_function" "contact_lambda" {
 
   environment {
     variables = {
-      SENDER_EMAIL = "danoguer.dev@gmail.com"
+      SENDER_EMAIL     = "danoguer.dev@gmail.com"
+      RATE_LIMIT_TABLE = aws_dynamodb_table.contact_rate_limit.name
     }
   }
 }
